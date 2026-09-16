@@ -1,0 +1,601 @@
+OrderID,Category,Country,Price,Quantity,Discount_pct,Sales,Rating,Customer_Age,Delivery_Days,Review
+1000,Toys,France,121.52,3,15,309.88,2.0,23,4,uncomfortable uncomfortable overpriced size price
+1001,Clothing,India,111.08,2,0,222.16,,28,5,poor disappointing returned delivery color
+1002,Books,Canada,37.58,3,20,90.19,4.0,30,4,beautiful sturdy beautiful price item
+1003,Books,Germany,18.26,4,0,73.04,3.0,41,6,item size size beautiful
+1004,Books,Spain,15.17,2,15,25.79,,36,6,item price shipping beautiful
+1005,Electronics,United States,310.37,4,0,1241.48,3.0,16,1,shipping shipping delivery excellent
+1006,Grocery,Italy,59.13,1,10,53.22,,41,5,excellent comfortable comfortable shipping price
+1007,Home & Kitchen,United States,244.69,3,10,660.66,5.0,46,3,worth comfortable fast service order
+1008,Clothing,Brazil,71.51,3,0,214.53,4.0,35,1,recommend quality fast packaging color
+1009,Home & Kitchen,Japan,284.02,4,20,908.86,4.0,37,6,smooth smooth smooth packaging order
+1010,Toys,Brazil,135.45,1,0,135.45,3.0,24,3,product delivery order smooth
+1011,Grocery,India,75.6,1,5,71.82,3.0,66,3,color item delivery excellent
+1012,Sports,Netherlands,96.18,1,0,96.18,5.0,29,4,worth amazing reliable order size
+1013,Grocery,United States,48.64,3,5,138.62,5.0,18,4,amazing durable durable product service
+1014,Books,United States,32.95,5,20,131.8,3.0,41,3,color packaging service excellent
+1015,Grocery,Canada,32.78,2,15,55.73,4.0,46,3,quality worth beautiful delivery color
+1016,Books,United States,14.62,1,10,13.16,3.0,45,5,delivery delivery packaging affordable
+1017,Beauty,India,95.35,4,0,381.4,5.0,24,5,great worth sturdy delivery service
+1018,Sports,United Kingdom,95.92,2,5,182.25,4.0,33,4,affordable comfortable great product product
+1019,Grocery,United States,10.21,3,10,27.57,4.0,21,5,great durable affordable item price
+1020,Beauty,Australia,80.25,1,0,80.25,4.0,22,5,sturdy reliable affordable product price
+1021,Toys,United States,144.91,1,0,144.91,3.0,41,3,delivery item service beautiful
+1022,Toys,India,128.19,3,10,346.11,4.0,34,2,excellent sturdy fast size color
+1023,Sports,Mexico,99.51,2,15,169.17,5.0,40,5,sturdy fantastic recommend packaging product
+1024,Grocery,India,57.05,4,20,182.56,3.0,16,9,order size order beautiful
+1025,Beauty,United States,36.03,2,15,61.25,3.0,47,5,price price color fantastic
+1026,Beauty,Canada,13.79,4,5,52.4,5.0,32,4,beautiful reliable beautiful price color
+1027,Toys,Italy,107.44,5,0,537.2,4.0,29,1,durable sturdy affordable price product
+1028,Grocery,United Kingdom,42.79,5,10,192.56,4.0,25,2,beautiful beautiful reliable color packaging
+1029,Electronics,Brazil,461.03,5,5,2189.89,4.0,54,4,quality beautiful beautiful delivery order
+1030,Grocery,Brazil,68.95,5,10,310.28,4.0,37,6,great smooth excellent product delivery
+1031,Home & Kitchen,Brazil,377.76,3,15,963.29,3.0,45,3,item delivery item great
+1032,Toys,India,19.97,5,15,84.87,4.0,27,6,recommend fast recommend shipping packaging
+1033,Electronics,United Kingdom,738.85,1,10,664.96,5.0,26,8,great fantastic amazing product color
+1034,Grocery,Canada,29.24,5,0,146.2,5.0,24,6,fantastic sturdy durable delivery product
+1035,Books,United States,5.6,1,15,4.76,4.0,16,5,fantastic great beautiful price price
+1036,Home & Kitchen,Australia,248.93,4,10,896.15,4.0,40,6,comfortable worth quality order price
+1037,Home & Kitchen,Netherlands,357.33,3,15,911.19,4.0,24,6,excellent recommend durable color shipping
+1038,Clothing,India,65.53,3,15,167.1,3.0,18,2,size color order beautiful
+1039,Home & Kitchen,United Kingdom,62.26,3,0,186.78,4.0,31,8,affordable recommend quality service color
+1040,Electronics,United States,638.45,4,25,1915.35,4.0,41,4,reliable fantastic great delivery packaging
+1041,Electronics,United States,508.94,1,0,508.94,3.0,34,7,order shipping size smooth
+1042,Grocery,United Kingdom,50.75,2,0,101.5,2.0,45,1,slow overpriced broken item delivery
+1043,Grocery,Spain,47.75,1,5,45.36,4.0,37,4,excellent amazing quality product price
+1044,Clothing,South Africa,63.32,3,15,161.47,4.0,16,3,durable smooth excellent price price
+1045,Beauty,Australia,110.27,5,15,468.65,3.0,33,2,service product delivery recommend
+1046,Sports,Brazil,74.06,1,10,66.65,4.0,24,4,durable great fast item product
+1047,Beauty,India,116.41,3,5,331.77,5.0,56,7,great comfortable durable item size
+1048,Clothing,Australia,92.59,3,0,277.77,4.0,16,8,beautiful great excellent price packaging
+1049,Clothing,India,139.72,2,15,237.52,3.0,39,5,item delivery service comfortable
+1050,Toys,Brazil,91.87,3,0,275.61,4.0,28,2,recommend amazing recommend order delivery
+1051,Home & Kitchen,India,332.28,2,0,664.56,4.0,44,2,amazing excellent worth order service
+1052,Clothing,Germany,121.92,1,10,109.73,4.0,29,2,fantastic quality quality shipping size
+1053,Beauty,India,77.24,2,15,131.31,3.0,25,6,color item order durable
+1054,Home & Kitchen,India,170.92,1,15,145.28,4.0,47,5,sturdy excellent recommend packaging service
+1055,Books,India,24.53,1,5,23.3,5.0,24,9,affordable affordable excellent delivery order
+1056,Electronics,France,356.71,4,10,1284.16,3.0,18,6,shipping color service comfortable
+1057,Home & Kitchen,India,219.31,5,25,822.41,4.0,28,5,fantastic quality durable size product
+1058,Beauty,Canada,27.14,3,15,69.21,4.0,16,10,beautiful durable fantastic delivery packaging
+1059,Electronics,Brazil,683.72,4,0,2734.88,3.0,39,6,packaging delivery product durable
+1060,Clothing,Nigeria,73.6,5,0,368.0,5.0,45,3,excellent sturdy fast shipping size
+1061,Toys,Australia,121.2,1,20,96.96,4.0,21,6,fast sturdy amazing delivery delivery
+1062,Electronics,India,687.72,4,15,2338.25,4.0,27,6,reliable great fast order packaging
+1063,Electronics,United Kingdom,799.3,1,10,719.37,4.0,30,6,recommend durable excellent color product
+1064,Electronics,Italy,371.4,2,10,668.52,4.0,24,5,affordable beautiful fantastic product packaging
+1065,Beauty,Australia,108.12,4,25,324.36,4.0,40,6,excellent worth fantastic size item
+1066,Clothing,South Africa,79.16,2,5,150.4,4.0,31,3,quality fantastic smooth item delivery
+1067,Home & Kitchen,United States,234.89,2,0,469.78,5.0,38,1,quality beautiful worth order shipping
+1068,Beauty,Mexico,19.29,1,0,19.29,4.0,35,6,affordable quality beautiful product order
+1069,Electronics,South Africa,427.79,5,0,2138.95,4.0,36,3,fantastic durable comfortable service product
+1070,Toys,United States,53.6,3,10,144.72,3.0,32,4,service order size amazing
+1071,Toys,France,58.57,2,20,93.71,3.0,16,5,packaging size price affordable
+1072,Electronics,India,377.16,3,10,1018.33,3.0,22,6,shipping product color excellent
+1073,Grocery,Mexico,8.16,3,0,24.48,4.0,32,3,recommend recommend worth shipping delivery
+1074,Clothing,Germany,51.17,3,5,145.83,3.0,16,2,product shipping color comfortable
+1075,Home & Kitchen,Germany,161.86,2,20,258.98,2.0,36,7,overpriced uncomfortable delayed shipping size
+1076,Electronics,France,735.93,3,20,1766.23,4.0,43,6,worth fast fantastic packaging price
+1077,Beauty,India,30.96,2,0,61.92,3.0,34,5,item item product quality
+1078,Sports,United States,112.42,2,15,191.11,5.0,47,3,great fantastic beautiful size shipping
+1079,Electronics,Japan,792.14,3,20,1901.14,4.0,30,4,worth sturdy affordable item service
+1080,Toys,India,40.52,3,5,115.48,5.0,37,6,reliable beautiful fantastic service size
+1081,Clothing,Australia,87.58,1,5,83.2,3.0,39,3,shipping item service reliable
+1082,Toys,United States,90.26,1,5,85.75,4.0,27,5,great reliable fantastic delivery order
+1083,Sports,Canada,125.95,3,5,358.96,3.0,26,6,item color shipping durable
+1084,Beauty,Germany,90.05,1,0,90.05,4.0,37,4,amazing reliable sturdy service shipping
+1085,Electronics,United Kingdom,418.49,5,10,1883.2,3.0,22,6,price delivery size amazing
+1086,Books,Netherlands,24.85,4,15,84.49,3.0,41,7,shipping delivery shipping quality
+1087,Sports,South Africa,231.33,5,10,1040.99,3.0,34,4,order service order quality
+1088,Grocery,France,57.33,1,0,57.33,4.0,22,7,worth fantastic comfortable delivery item
+1089,Home & Kitchen,United States,334.99,1,10,301.49,5.0,41,3,great reliable fast shipping order
+1090,Toys,Brazil,66.63,1,10,59.97,5.0,35,8,amazing comfortable great order item
+1091,Beauty,Spain,8.03,5,10,36.14,3.0,31,7,price service shipping smooth
+1092,Toys,Germany,65.76,1,5,62.47,4.0,16,4,reliable sturdy excellent price service
+1093,Toys,Spain,63.81,4,0,255.24,4.0,42,6,worth affordable fast item service
+1094,Toys,South Africa,148.76,3,5,423.97,4.0,40,3,beautiful great affordable size price
+1095,Sports,France,194.49,1,10,175.04,4.0,32,1,great amazing amazing product shipping
+1096,Home & Kitchen,Germany,330.02,5,0,1650.1,4.0,51,8,sturdy great sturdy item order
+1097,Electronics,India,349.82,1,10,314.84,3.0,29,1,shipping price order amazing
+1098,Beauty,Nigeria,115.76,5,20,463.04,5.0,43,5,affordable fast recommend product size
+1099,Grocery,Mexico,64.4,4,20,206.08,4.0,43,6,sturdy reliable beautiful packaging size
+1100,Books,United Kingdom,13.72,3,25,30.87,5.0,28,6,smooth comfortable amazing product service
+1101,Electronics,Germany,174.99,2,10,314.98,4.0,37,4,worth comfortable beautiful service item
+1102,Toys,Spain,64.9,5,0,324.5,5.0,29,5,durable excellent beautiful size product
+1103,Beauty,Nigeria,77.54,3,20,186.1,5.0,22,3,fast great fantastic color product
+1104,Beauty,India,49.65,3,0,148.95,4.0,32,2,recommend recommend fast packaging item
+1105,Toys,Spain,105.27,3,0,315.81,3.0,46,4,price price packaging durable
+1106,Home & Kitchen,United States,124.2,3,5,353.97,4.0,44,6,affordable smooth amazing shipping service
+1107,Electronics,Australia,154.75,3,15,394.61,4.0,30,3,reliable affordable smooth order delivery
+1108,Books,France,48.81,1,0,48.81,3.0,18,6,size size price reliable
+1109,Clothing,India,121.66,3,25,273.74,3.0,37,8,item size service excellent
+1110,Books,India,47.89,3,5,136.49,5.0,33,2,beautiful affordable amazing product item
+1111,Electronics,South Africa,152.05,5,0,760.25,3.0,43,2,size color order worth
+1112,Clothing,Canada,122.08,2,0,244.16,5.0,36,6,sturdy amazing smooth shipping shipping
+1113,Clothing,Japan,97.54,4,5,370.65,4.0,50,7,beautiful quality great service order
+1114,Beauty,India,17.14,4,0,68.56,4.0,30,5,comfortable great smooth item size
+1115,Clothing,Netherlands,101.46,5,25,380.48,4.0,27,2,great recommend recommend size product
+1116,Toys,Australia,74.77,5,15,317.77,3.0,16,3,price item packaging amazing
+1117,Toys,United States,136.1,2,25,204.15,3.0,56,2,item shipping price quality
+1118,Electronics,India,187.89,4,20,601.25,2.0,37,4,uncomfortable delayed poor packaging item
+1119,Toys,United States,32.89,3,5,93.74,5.0,33,8,fantastic recommend comfortable order delivery
+1120,Beauty,Brazil,27.01,2,5,51.32,4.0,32,2,sturdy durable fantastic service price
+1121,Toys,Canada,102.93,5,15,437.45,4.0,35,7,durable smooth fast packaging item
+1122,Beauty,India,14.39,5,20,57.56,4.0,32,2,excellent great worth order packaging
+1123,Sports,Spain,151.77,3,0,455.31,4.0,38,6,quality affordable quality item color
+1124,Books,Spain,34.27,5,0,171.35,4.0,25,6,recommend durable reliable size item
+1125,Electronics,India,767.25,2,5,1457.78,4.0,25,6,quality affordable excellent shipping service
+1126,Beauty,Brazil,110.89,1,0,110.89,4.0,51,2,amazing durable quality service product
+1127,Electronics,France,894.54,5,15,3801.79,4.0,25,6,recommend durable worth packaging size
+1128,Home & Kitchen,United States,326.98,2,20,523.17,5.0,30,6,reliable quality excellent order color
+1129,Toys,France,107.37,4,10,386.53,5.0,19,1,durable beautiful fast delivery shipping
+1130,Beauty,United States,79.97,2,5,151.94,4.0,34,7,beautiful sturdy smooth price item
+1131,Grocery,United States,47.67,4,5,181.15,4.0,33,8,smooth fast fast price color
+1132,Home & Kitchen,United States,22.87,5,20,91.48,4.0,31,6,reliable fantastic worth delivery shipping
+1133,Grocery,Netherlands,9.9,2,5,18.81,5.0,23,5,comfortable quality smooth order color
+1134,Sports,United States,67.61,1,10,60.85,4.0,33,6,affordable recommend beautiful color size
+1135,Beauty,India,65.7,4,0,262.8,5.0,49,2,recommend beautiful affordable shipping product
+1136,Clothing,South Africa,45.79,4,0,183.16,,54,3,excellent comfortable amazing price product
+1137,Home & Kitchen,India,350.32,1,0,350.32,4.0,25,5,smooth comfortable fast order service
+1138,Beauty,Nigeria,78.79,1,5,74.85,3.0,38,3,color service product fast
+1139,Toys,United States,57.75,3,10,155.93,4.0,16,5,fantastic affordable reliable product packaging
+1140,Home & Kitchen,United States,172.45,1,0,172.45,4.0,34,3,durable affordable amazing delivery size
+1141,Books,India,22.84,3,0,68.52,3.0,16,2,delivery item color worth
+1142,Books,Netherlands,8.31,4,0,33.24,4.0,48,6,worth sturdy comfortable product shipping
+1143,Books,Netherlands,31.12,5,0,155.6,5.0,20,3,worth reliable fantastic size size
+1144,Clothing,Germany,120.31,1,10,108.28,3.0,30,4,item service service excellent
+1145,Home & Kitchen,Germany,333.61,2,10,600.5,5.0,17,4,durable smooth reliable packaging order
+1146,Books,Brazil,56.18,2,10,101.12,3.0,38,9,color packaging service quality
+1147,Sports,United States,21.52,3,10,58.1,4.0,38,5,sturdy amazing sturdy size product
+1148,Books,Australia,38.35,1,10,34.52,3.0,34,2,price item shipping reliable
+1149,Clothing,Japan,80.86,4,0,323.44,3.0,30,5,packaging item size recommend
+1150,Home & Kitchen,United States,255.44,4,5,970.67,4.0,19,5,amazing recommend quality shipping service
+1151,Toys,Japan,43.49,3,0,130.47,4.0,17,3,smooth excellent fantastic packaging color
+1152,Grocery,Brazil,65.68,4,5,249.58,3.0,16,6,color size color reliable
+1153,Sports,United Kingdom,234.25,2,0,468.5,5.0,31,5,comfortable beautiful affordable color price
+1154,Electronics,Netherlands,345.27,2,0,690.54,2.0,23,4,slow delayed cheap order packaging
+1155,Clothing,Japan,55.45,4,10,199.62,4.0,56,7,beautiful reliable beautiful product service
+1156,Grocery,Japan,63.59,1,20,50.87,4.0,31,4,affordable reliable smooth color item
+1157,Grocery,India,71.92,1,10,64.73,4.0,35,2,smooth excellent comfortable price shipping
+1158,Sports,Japan,25.84,3,10,69.77,4.0,16,5,fantastic quality great color delivery
+1159,Books,Brazil,24.52,2,0,49.04,5.0,33,3,durable quality smooth product shipping
+1160,Grocery,India,20.54,1,5,19.51,4.0,37,3,beautiful comfortable worth item order
+1161,Sports,France,50.69,3,25,114.05,4.0,47,8,smooth amazing fast order product
+1162,Grocery,United Kingdom,49.09,1,5,46.64,4.0,56,2,worth excellent affordable price delivery
+1163,Clothing,Germany,124.23,1,0,124.23,4.0,30,2,worth affordable worth shipping color
+1164,Toys,Australia,101.86,3,5,290.3,4.0,37,1,reliable quality fantastic item delivery
+1165,Toys,Australia,127.7,5,5,606.57,5.0,37,6,durable great comfortable color service
+1166,Grocery,Japan,36.4,2,10,65.52,3.0,39,5,order item service beautiful
+1167,Sports,United States,223.93,3,0,671.79,5.0,27,5,durable beautiful beautiful order size
+1168,Books,United States,46.02,1,25,34.52,4.0,24,4,reliable beautiful fantastic packaging packaging
+1169,Clothing,Brazil,134.07,3,0,402.21,3.0,29,4,product color color fantastic
+1170,Sports,France,198.06,5,10,891.27,5.0,56,7,quality smooth smooth delivery product
+1171,Toys,Nigeria,20.79,5,15,88.36,3.0,40,6,delivery packaging color excellent
+1172,Toys,Japan,43.02,4,0,172.08,3.0,42,6,size packaging packaging quality
+1173,Home & Kitchen,France,280.65,4,5,1066.47,4.0,28,2,recommend beautiful amazing delivery product
+1174,Beauty,Italy,101.15,5,10,455.18,3.0,29,6,packaging product price beautiful
+1175,Grocery,Australia,40.19,2,0,80.38,4.0,16,1,sturdy fantastic durable service size
+1176,Beauty,Italy,76.35,4,5,290.13,5.0,30,4,beautiful durable quality order service
+1177,Sports,India,91.42,1,5,86.85,3.0,26,5,product color size quality
+1178,Toys,France,13.06,3,25,29.38,4.0,16,3,beautiful reliable affordable product delivery
+1179,Home & Kitchen,India,389.36,4,5,1479.57,4.0,20,4,beautiful sturdy comfortable size color
+1180,Electronics,United Kingdom,509.18,5,0,2545.9,5.0,49,5,worth durable amazing product order
+1181,Sports,United Kingdom,55.17,1,10,49.65,3.0,44,8,size shipping shipping durable
+1182,Books,Japan,24.58,3,0,73.74,4.0,26,3,worth fantastic durable shipping shipping
+1183,Sports,United States,202.99,4,20,649.57,4.0,23,5,beautiful excellent quality item service
+1184,Grocery,Germany,38.72,4,10,139.39,4.0,37,3,great reliable great shipping order
+1185,Grocery,United States,25.11,4,15,85.37,3.0,46,7,shipping item order smooth
+1186,Books,South Africa,35.68,2,5,67.79,4.0,31,5,reliable smooth fast price packaging
+1187,Beauty,Japan,76.91,3,20,184.58,4.0,28,6,quality recommend comfortable price price
+1188,Beauty,Netherlands,79.08,4,25,237.24,3.0,24,5,packaging service packaging amazing
+1189,Clothing,United States,21.12,5,25,79.2,4.0,37,5,durable great smooth service item
+1190,Toys,Germany,101.23,1,5,96.17,4.0,28,6,affordable beautiful worth product price
+1191,Home & Kitchen,India,73.95,1,15,62.86,5.0,24,2,durable excellent reliable delivery product
+1192,Books,Canada,45.66,2,5,86.75,4.0,29,6,quality great fantastic order service
+1193,Toys,United States,52.74,5,0,263.7,4.0,42,6,smooth excellent comfortable service delivery
+1194,Books,Mexico,41.57,2,10,74.83,3.0,16,2,delivery delivery packaging excellent
+1195,Electronics,India,425.58,2,25,638.37,4.0,19,6,smooth fantastic recommend color service
+1196,Home & Kitchen,Mexico,258.73,1,0,258.73,3.0,37,3,service product shipping fantastic
+1197,Electronics,United States,756.12,5,0,3780.6,5.0,35,6,sturdy affordable quality color product
+1198,Grocery,Japan,5.67,3,0,17.01,3.0,54,6,product price service recommend
+1199,Electronics,Spain,628.74,1,0,628.74,4.0,26,2,great beautiful fantastic size shipping
+1200,Sports,Brazil,194.92,4,15,662.73,4.0,25,5,great durable smooth item shipping
+1201,Clothing,Brazil,76.21,1,10,68.59,4.0,26,4,excellent recommend smooth size order
+1202,Home & Kitchen,United Kingdom,73.21,4,5,278.2,2.0,59,3,slow uncomfortable disappointing size product
+1203,Beauty,United States,13.54,3,15,34.53,3.0,18,1,order size service sturdy
+1204,Grocery,Germany,9.71,1,15,8.25,4.0,36,6,quality worth recommend product shipping
+1205,Books,France,45.14,5,15,191.84,3.0,27,6,color order price affordable
+1206,Electronics,India,601.85,5,15,2557.86,5.0,29,6,fantastic amazing reliable delivery shipping
+1207,Books,United States,54.52,4,0,218.08,4.0,40,5,sturdy beautiful amazing delivery order
+1208,Beauty,Mexico,79.24,1,10,71.32,3.0,27,5,product service delivery fast
+1209,Electronics,Japan,149.2,2,20,238.72,3.0,35,4,shipping service size smooth
+1210,Sports,India,212.36,2,5,403.48,3.0,46,5,delivery delivery service quality
+1211,Toys,India,54.64,2,5,103.82,2.0,39,6,flimsy uncomfortable cheap color packaging
+1212,Sports,United States,268.68,1,20,214.94,4.0,16,5,excellent durable reliable shipping item
+1213,Grocery,India,19.78,4,10,71.21,4.0,48,2,beautiful fast worth size order
+1214,Home & Kitchen,Germany,28.87,3,0,86.61,3.0,34,4,delivery color size fantastic
+1215,Clothing,France,125.74,1,0,125.74,4.0,18,4,recommend amazing recommend size price
+1216,Home & Kitchen,United States,338.65,3,5,965.15,4.0,20,3,great excellent smooth shipping delivery
+1217,Sports,Japan,193.48,3,0,580.44,5.0,39,3,durable sturdy affordable order delivery
+1218,Sports,Canada,223.28,4,20,714.5,3.0,52,8,size price size fast
+1219,Toys,United Kingdom,27.47,1,10,24.72,4.0,16,5,smooth smooth fantastic size color
+1220,Clothing,Australia,78.8,3,0,236.4,5.0,36,1,great reliable worth item delivery
+1221,Toys,United Kingdom,117.03,4,15,397.9,3.0,31,2,size delivery price recommend
+1222,Toys,Canada,97.72,2,5,185.67,4.0,44,7,smooth amazing sturdy shipping delivery
+1223,Grocery,Canada,43.7,3,25,98.33,4.0,25,3,comfortable great excellent packaging service
+1224,Sports,Spain,226.04,5,0,1130.2,4.0,39,5,quality affordable comfortable service item
+1225,Beauty,India,39.4,4,5,149.72,4.0,41,3,smooth recommend recommend item delivery
+1226,Home & Kitchen,Germany,350.2,2,0,700.4,3.0,41,6,item color delivery affordable
+1227,Toys,France,140.09,3,0,420.27,5.0,25,5,worth reliable recommend price delivery
+1228,Sports,Mexico,133.59,1,0,133.59,5.0,16,5,fantastic fantastic amazing item packaging
+1229,Sports,Japan,244.13,4,0,976.52,3.0,47,4,item item shipping amazing
+1230,Toys,India,17.61,4,5,66.92,5.0,40,3,excellent comfortable affordable item shipping
+1231,Electronics,United States,359.1,4,15,1220.94,3.0,51,4,delivery service item smooth
+1232,Books,Italy,48.39,3,5,137.91,4.0,38,4,beautiful recommend excellent service shipping
+1233,Toys,Brazil,10.61,5,15,45.09,4.0,27,5,worth sturdy reliable packaging delivery
+1234,Home & Kitchen,Germany,264.78,2,0,529.56,3.0,44,4,delivery service color sturdy
+1235,Sports,Canada,133.7,5,5,635.07,4.0,33,6,durable affordable durable product packaging
+1236,Sports,India,229.9,5,0,1149.5,,48,6,reliable smooth affordable size size
+1237,Electronics,Brazil,809.98,4,0,3239.92,4.0,18,6,reliable smooth quality price order
+1238,Beauty,India,35.09,2,0,70.18,5.0,31,1,durable fantastic affordable service packaging
+1239,Clothing,Japan,82.66,1,5,78.53,5.0,16,5,beautiful smooth fast size price
+1240,Clothing,United States,117.82,1,0,117.82,3.0,35,8,price packaging color fantastic
+1241,Toys,France,104.58,3,15,266.68,3.0,17,3,packaging shipping delivery recommend
+1242,Electronics,Australia,848.65,2,5,1612.44,4.0,26,4,smooth durable sturdy product order
+1243,Books,Japan,39.09,1,10,35.18,4.0,34,2,reliable affordable affordable packaging product
+1244,Electronics,India,856.86,4,10,3084.7,4.0,46,7,sturdy fast affordable size product
+1245,Clothing,Germany,52.27,2,0,104.54,4.0,42,3,durable worth durable item order
+1246,Beauty,United Kingdom,56.48,3,0,169.44,4.0,38,5,fast reliable sturdy item delivery
+1247,Toys,India,20.23,2,25,30.34,4.0,37,5,comfortable affordable recommend order shipping
+1248,Beauty,Japan,88.45,1,5,84.03,4.0,37,7,smooth smooth beautiful price shipping
+1249,Clothing,Japan,55.03,2,10,99.05,3.0,40,3,delivery order packaging sturdy
+1250,Beauty,Germany,52.56,3,25,118.26,3.0,16,9,delivery delivery product comfortable
+1251,Home & Kitchen,United States,124.71,1,15,106.0,,36,1,fantastic excellent amazing product order
+1252,Clothing,South Africa,138.55,4,0,554.2,3.0,25,6,packaging price shipping great
+1253,Sports,India,162.26,2,15,275.84,4.0,41,6,beautiful affordable reliable price packaging
+1254,Toys,France,76.69,2,0,153.38,4.0,27,2,sturdy fast fantastic order delivery
+1255,Sports,United States,146.1,3,15,372.55,4.0,38,7,beautiful fantastic great item service
+1256,Electronics,India,522.06,4,5,1983.83,3.0,37,4,order shipping color comfortable
+1257,Beauty,India,9.13,4,0,36.52,3.0,34,6,service price color beautiful
+1258,Clothing,Japan,135.45,5,15,575.66,5.0,28,2,excellent fast comfortable order order
+1259,Grocery,Brazil,15.88,1,0,15.88,4.0,16,1,fantastic quality sturdy price price
+1260,Beauty,Netherlands,95.44,1,0,95.44,4.0,20,4,beautiful comfortable recommend service product
+1261,Clothing,India,122.99,5,0,614.95,4.0,36,3,excellent quality excellent color product
+1262,Electronics,Australia,392.02,4,15,1332.87,3.0,30,4,delivery size service excellent
+1263,Electronics,Canada,523.4,5,10,2355.3,4.0,30,4,worth great great order service
+1264,Books,Mexico,42.24,4,0,168.96,5.0,45,6,great amazing comfortable delivery delivery
+1265,Clothing,India,44.65,4,0,178.6,4.0,18,2,smooth excellent durable product price
+1266,Electronics,Japan,799.95,5,0,3999.75,3.0,28,1,item color packaging excellent
+1267,Sports,France,238.69,3,15,608.66,4.0,47,4,beautiful excellent amazing size order
+1268,Sports,Canada,294.0,1,15,249.9,3.0,16,3,order item service great
+1269,Grocery,India,51.56,2,10,92.81,4.0,26,2,quality durable fantastic service size
+1270,Books,France,37.95,4,0,151.8,5.0,49,6,sturdy excellent durable service packaging
+1271,Home & Kitchen,India,247.11,5,0,1235.55,3.0,16,9,size delivery price fast
+1272,Grocery,India,48.24,2,5,91.66,4.0,18,8,great excellent beautiful packaging service
+1273,Sports,Australia,190.92,1,5,181.37,4.0,41,6,reliable quality sturdy packaging service
+1274,Home & Kitchen,Brazil,23.44,4,10,84.38,4.0,42,3,quality quality excellent service price
+1275,Home & Kitchen,Australia,114.07,3,5,325.1,5.0,40,8,amazing worth comfortable order item
+1276,Beauty,Germany,50.93,4,20,162.98,4.0,39,2,worth affordable great order product
+1277,Electronics,United States,249.1,3,10,672.57,4.0,43,6,sturdy amazing affordable price item
+1278,Sports,United Kingdom,264.01,3,15,673.23,3.0,55,3,order service packaging durable
+1279,Grocery,Italy,34.39,3,5,98.01,4.0,43,5,worth durable amazing service product
+1280,Beauty,India,25.86,5,0,129.3,4.0,42,5,great fantastic reliable product packaging
+1281,Books,United States,18.75,2,10,33.75,4.0,44,7,sturdy recommend comfortable color price
+1282,Books,Spain,39.77,1,10,35.79,3.0,45,1,size price order comfortable
+1283,Electronics,India,362.72,3,5,1033.75,2.0,34,4,delayed slow delayed product color
+1284,Grocery,Germany,69.45,5,15,295.16,3.0,30,5,packaging item service beautiful
+1285,Books,Australia,22.11,3,5,63.01,4.0,30,5,sturdy quality excellent product delivery
+1286,Home & Kitchen,Germany,284.64,2,0,569.28,4.0,45,4,recommend excellent reliable color shipping
+1287,Clothing,Mexico,81.72,5,5,388.17,3.0,58,5,price product product worth
+1288,Electronics,France,782.99,3,5,2231.52,4.0,50,6,excellent recommend sturdy size service
+1289,Home & Kitchen,Germany,68.41,1,10,61.57,5.0,53,4,quality great fast price service
+1290,Grocery,Mexico,4.19,2,0,8.38,4.0,43,1,amazing recommend recommend size packaging
+1291,Grocery,United States,75.58,2,5,143.6,3.0,36,2,color packaging packaging fast
+1292,Clothing,South Africa,58.99,3,5,168.12,3.0,29,7,shipping service packaging affordable
+1293,Electronics,United States,558.65,5,10,2513.93,5.0,36,7,great reliable great color service
+1294,Toys,United States,134.66,5,0,673.3,,20,8,reliable durable worth order order
+1295,Sports,France,219.17,3,0,657.51,5.0,38,6,excellent beautiful amazing item delivery
+1296,Clothing,Canada,73.11,1,0,73.11,3.0,35,4,price order packaging comfortable
+1297,Beauty,Japan,15.07,5,15,64.05,4.0,46,3,fantastic beautiful reliable packaging product
+1298,Books,India,16.95,5,0,84.75,4.0,30,5,amazing durable sturdy shipping shipping
+1299,Grocery,South Africa,59.69,5,15,253.68,3.0,34,5,size packaging order great
+1300,Sports,Netherlands,147.76,5,5,701.86,4.0,31,4,durable durable quality shipping item
+1301,Electronics,Spain,705.09,3,0,2115.27,,28,1,delivery service packaging recommend
+1302,Sports,India,230.67,3,10,622.81,4.0,52,8,amazing comfortable smooth price price
+1303,Home & Kitchen,Japan,188.36,2,10,339.05,5.0,44,6,fast fast recommend item color
+1304,Beauty,Germany,49.79,3,0,149.37,3.0,46,7,delivery product color fantastic
+1305,Electronics,France,227.07,4,0,908.28,4.0,43,6,amazing fantastic amazing product color
+1306,Home & Kitchen,Canada,285.86,4,5,1086.27,5.0,36,6,amazing fantastic durable order shipping
+1307,Books,United Kingdom,24.52,4,0,98.08,3.0,37,5,packaging color color recommend
+1308,Home & Kitchen,United States,356.72,3,15,909.64,5.0,37,5,worth worth fantastic color price
+1309,Toys,Spain,65.43,1,20,52.34,3.0,32,4,item color order amazing
+1310,Home & Kitchen,United Kingdom,198.26,2,0,396.52,4.0,37,5,recommend worth affordable order color
+1311,Books,Netherlands,24.54,5,5,116.56,5.0,20,6,worth reliable durable order shipping
+1312,Grocery,India,14.09,3,0,42.27,4.0,32,7,comfortable beautiful reliable shipping item
+1313,Electronics,Brazil,236.4,1,10,212.76,4.0,36,5,quality quality quality color color
+1314,Sports,India,296.99,1,20,237.59,4.0,16,8,durable great smooth color service
+1315,Home & Kitchen,Germany,323.89,4,5,1230.78,5.0,55,5,recommend sturdy smooth order size
+1316,Books,United States,58.36,1,15,49.61,2.0,36,4,broken broken uncomfortable color shipping
+1317,Beauty,Mexico,24.02,3,20,57.65,3.0,31,7,price packaging service quality
+1318,Electronics,United States,287.17,5,20,1148.68,5.0,37,5,durable fantastic excellent product product
+1319,Grocery,Spain,40.43,2,20,64.69,4.0,41,6,quality fast recommend color price
+1320,Electronics,Germany,713.46,5,0,3567.3,5.0,55,2,recommend fast reliable price color
+1321,Electronics,United Kingdom,498.68,4,10,1795.25,4.0,29,4,fantastic worth excellent service packaging
+1322,Electronics,Australia,768.13,1,15,652.91,5.0,26,2,sturdy sturdy affordable shipping product
+1323,Home & Kitchen,India,324.55,3,15,827.6,4.0,31,3,recommend reliable reliable shipping color
+1324,Grocery,Australia,32.82,2,5,62.36,3.0,24,4,shipping product price great
+1325,Clothing,France,103.5,3,10,279.45,4.0,16,2,smooth amazing durable color price
+1326,Home & Kitchen,United States,212.41,2,20,339.86,,55,4,overpriced returned overpriced shipping shipping
+1327,Home & Kitchen,South Africa,342.82,2,5,651.36,4.0,40,6,smooth fast sturdy shipping shipping
+1328,Toys,India,145.53,1,20,116.42,3.0,36,6,shipping price delivery beautiful
+1329,Home & Kitchen,Brazil,41.13,3,0,123.39,3.0,27,1,item packaging color fantastic
+1330,Toys,Australia,51.84,1,5,49.25,4.0,35,6,reliable worth recommend product packaging
+1331,Beauty,France,84.4,2,0,168.8,4.0,36,2,sturdy beautiful reliable size product
+1332,Home & Kitchen,India,150.7,4,10,542.52,3.0,34,7,order service packaging excellent
+1333,Grocery,India,66.64,5,15,283.22,3.0,52,4,size price service fast
+1334,Grocery,Mexico,63.33,4,10,227.99,4.0,38,4,recommend recommend durable order service
+1335,Toys,India,145.76,5,0,728.8,4.0,42,1,reliable quality excellent product service
+1336,Toys,South Africa,106.43,2,15,180.93,5.0,16,4,excellent durable beautiful product size
+1337,Electronics,United States,373.83,5,15,1588.78,3.0,28,7,size product price affordable
+1338,Home & Kitchen,Canada,26.37,5,20,105.48,2.0,28,5,broken flimsy flimsy packaging product
+1339,Electronics,United States,666.1,5,0,3330.5,4.0,26,8,quality smooth great product delivery
+1340,Home & Kitchen,South Africa,107.96,3,5,307.69,3.0,38,7,product delivery packaging recommend
+1341,Beauty,United States,83.69,5,0,418.45,4.0,26,4,smooth worth fantastic order item
+1342,Toys,United States,23.4,3,0,70.2,3.0,16,3,order size item amazing
+1343,Sports,Mexico,237.57,4,5,902.77,,23,5,durable beautiful amazing shipping order
+1344,Grocery,United States,24.13,2,10,43.43,3.0,32,5,size shipping size great
+1345,Beauty,Japan,22.83,3,5,65.07,3.0,48,1,service service color beautiful
+1346,Home & Kitchen,Germany,357.11,5,5,1696.27,4.0,21,4,sturdy beautiful worth order service
+1347,Beauty,India,52.03,1,0,52.03,4.0,20,3,fast fast reliable price size
+1348,Sports,Mexico,101.81,1,0,101.81,2.0,32,6,cheap returned broken service order
+1349,Books,Germany,25.03,4,25,75.09,3.0,48,6,shipping color color worth
+1350,Toys,India,17.08,4,5,64.9,4.0,26,2,beautiful fantastic smooth size price
+1351,Beauty,Mexico,39.33,2,10,70.79,5.0,31,6,quality fantastic quality packaging delivery
+1352,Sports,India,178.02,5,15,756.58,3.0,28,3,item price size fantastic
+1353,Beauty,Brazil,51.89,2,0,103.78,4.0,16,6,fantastic quality fantastic service color
+1354,Home & Kitchen,South Africa,176.3,4,10,634.68,3.0,44,6,price size order fantastic
+1355,Sports,India,297.08,5,25,1114.05,5.0,30,6,sturdy reliable recommend delivery price
+1356,Grocery,Brazil,50.69,4,5,192.62,4.0,34,9,quality fast affordable product color
+1357,Sports,United States,237.16,2,10,426.89,1.0,34,3,disappointing cheap returned color item
+1358,Clothing,United States,131.18,4,0,524.72,5.0,41,4,durable beautiful quality price size
+1359,Grocery,India,19.35,1,15,16.45,5.0,20,3,beautiful sturdy amazing shipping service
+1360,Books,United States,6.53,2,0,13.06,5.0,34,4,affordable durable fast item service
+1361,Beauty,India,52.56,4,10,189.22,4.0,16,4,worth worth reliable item shipping
+1362,Beauty,India,97.62,2,5,185.48,5.0,23,7,fantastic affordable sturdy product packaging
+1363,Books,Australia,57.03,3,0,171.09,4.0,36,3,comfortable quality worth size product
+1364,Sports,India,253.62,5,5,1204.7,4.0,36,6,affordable fast worth product price
+1365,Toys,India,55.18,4,0,220.72,4.0,24,7,fast fantastic great price service
+1366,Sports,Brazil,39.24,1,5,37.28,3.0,29,1,delivery packaging delivery excellent
+1367,Toys,Canada,55.77,1,5,52.98,5.0,31,2,great excellent great delivery price
+1368,Home & Kitchen,Australia,65.43,4,15,222.46,4.0,33,7,recommend recommend smooth service size
+1369,Books,United States,29.37,5,15,124.82,3.0,49,5,order delivery order comfortable
+1370,Home & Kitchen,India,125.58,1,0,125.58,3.0,36,3,order order size amazing
+1371,Home & Kitchen,Brazil,123.28,4,5,468.46,4.0,36,8,affordable comfortable fast color packaging
+1372,Electronics,Italy,654.35,4,5,2486.53,3.0,22,7,product color order fast
+1373,Books,France,56.41,5,0,282.05,4.0,51,4,durable recommend great product packaging
+1374,Beauty,United Kingdom,26.14,4,25,78.42,2.0,21,1,cheap broken slow order size
+1375,Grocery,India,65.66,2,15,111.62,3.0,19,3,service color item durable
+1376,Home & Kitchen,Canada,148.47,1,0,148.47,3.0,35,4,color item service recommend
+1377,Home & Kitchen,Germany,64.26,3,0,192.78,5.0,41,6,sturdy amazing smooth delivery packaging
+1378,Sports,Germany,37.98,2,5,72.16,3.0,27,2,color product order beautiful
+1379,Toys,United Kingdom,55.6,4,0,222.4,4.0,22,10,reliable worth sturdy order product
+1380,Clothing,Mexico,123.35,3,5,351.55,4.0,16,6,smooth durable amazing delivery color
+1381,Home & Kitchen,South Africa,194.55,5,20,778.2,3.0,34,4,item packaging product amazing
+1382,Sports,Brazil,34.41,2,15,58.5,4.0,39,7,worth comfortable smooth delivery color
+1383,Electronics,South Africa,548.72,5,15,2332.06,5.0,32,3,fast beautiful fast color order
+1384,Toys,India,97.55,3,0,292.65,4.0,28,2,recommend recommend great delivery shipping
+1385,Grocery,India,67.61,4,5,256.92,4.0,27,5,recommend great sturdy price service
+1386,Toys,Germany,23.72,2,0,47.44,4.0,29,5,smooth sturdy excellent order service
+1387,Books,Australia,24.7,3,10,66.69,3.0,31,4,service delivery shipping fast
+1388,Grocery,India,40.7,4,10,146.52,3.0,34,5,packaging size item quality
+1389,Clothing,Italy,104.86,5,5,498.08,4.0,33,4,sturdy comfortable fast delivery delivery
+1390,Toys,United States,43.69,5,0,218.45,4.0,37,4,amazing smooth comfortable product delivery
+1391,Books,Spain,49.23,5,0,246.15,5.0,28,5,affordable durable recommend color size
+1392,Beauty,India,23.14,3,5,65.95,2.0,49,2,flimsy delayed disappointing price service
+1393,Toys,India,87.49,5,0,437.45,5.0,28,3,comfortable amazing fantastic size service
+1394,Sports,Brazil,176.71,5,15,751.02,3.0,21,4,product service item sturdy
+1395,Clothing,Australia,10.91,3,0,32.73,4.0,16,5,affordable great comfortable price delivery
+1396,Electronics,United States,154.97,2,15,263.45,3.0,30,3,product item service amazing
+1397,Sports,United States,245.9,3,10,663.93,3.0,43,3,product item shipping comfortable
+1398,Clothing,France,52.9,5,10,238.05,4.0,40,3,amazing smooth affordable packaging service
+1399,Toys,United States,11.94,1,5,11.34,3.0,44,3,service packaging price comfortable
+1400,Sports,Japan,175.91,2,20,281.46,3.0,29,4,service price delivery reliable
+1401,Sports,Canada,22.02,4,10,79.27,,45,6,packaging color item durable
+1402,Grocery,United States,74.74,5,20,298.96,3.0,41,6,item service order comfortable
+1403,Books,United Kingdom,16.37,3,5,46.65,5.0,30,7,great durable fast delivery shipping
+1404,Electronics,Australia,383.59,1,5,364.41,4.0,38,3,excellent sturdy quality size shipping
+1405,Home & Kitchen,Germany,114.45,4,10,412.02,4.0,34,6,comfortable fast beautiful item packaging
+1406,Electronics,Canada,827.69,2,20,1324.3,4.0,34,1,great worth amazing delivery size
+1407,Sports,Canada,54.13,2,0,108.26,5.0,58,4,durable fast comfortable service product
+1408,Sports,Brazil,226.46,4,10,815.26,4.0,42,4,excellent amazing quality packaging price
+1409,Electronics,South Africa,332.46,1,5,315.84,5.0,44,6,worth great fantastic product shipping
+1410,Books,United States,11.19,2,5,21.26,4.0,31,3,quality great worth service item
+1411,Grocery,India,78.27,5,0,391.35,4.0,39,5,worth quality smooth service item
+1412,Clothing,India,71.69,5,0,358.45,4.0,26,4,reliable worth sturdy shipping packaging
+1413,Sports,South Africa,132.05,3,20,316.92,4.0,16,3,beautiful comfortable amazing packaging price
+1414,Toys,United Kingdom,54.92,1,25,41.19,3.0,31,6,service packaging size durable
+1415,Beauty,India,100.09,5,0,500.45,4.0,29,5,excellent excellent affordable packaging packaging
+1416,Sports,Canada,114.42,3,15,291.77,4.0,42,3,affordable affordable excellent shipping item
+1417,Beauty,Japan,46.22,5,10,207.99,4.0,25,5,durable great worth order item
+1418,Clothing,Australia,15.28,2,25,22.92,4.0,36,1,worth sturdy fast order delivery
+1419,Grocery,India,66.05,4,15,224.57,3.0,27,2,shipping color delivery durable
+1420,Toys,United States,18.6,4,5,70.68,4.0,16,4,excellent durable worth color service
+1421,Toys,India,119.64,3,10,323.03,4.0,30,5,recommend durable reliable product delivery
+1422,Electronics,United Kingdom,282.51,5,0,1412.55,4.0,17,4,fast comfortable comfortable price color
+1423,Books,Germany,20.89,5,5,99.23,3.0,34,5,order item product reliable
+1424,Books,India,48.8,1,10,43.92,3.0,24,5,color color order recommend
+1425,Toys,India,46.53,3,5,132.61,3.0,16,4,service price item comfortable
+1426,Clothing,Brazil,25.22,5,5,119.79,4.0,29,4,amazing fast comfortable service product
+1427,Sports,France,104.41,2,0,208.82,5.0,43,4,excellent excellent beautiful delivery order
+1428,Home & Kitchen,Australia,264.26,1,10,237.83,2.0,24,6,slow flimsy delayed service color
+1429,Books,India,6.39,2,5,12.14,4.0,16,2,durable sturdy recommend shipping shipping
+1430,Beauty,South Africa,41.37,1,0,41.37,4.0,18,3,excellent reliable amazing shipping order
+1431,Home & Kitchen,France,111.28,2,20,178.05,4.0,45,2,fantastic reliable recommend item product
+1432,Electronics,Spain,809.99,5,5,3847.45,4.0,40,8,reliable comfortable great order packaging
+1433,Clothing,Brazil,69.33,2,0,138.66,4.0,16,4,excellent beautiful great product product
+1434,Books,South Africa,49.65,3,5,141.5,,47,3,worth fantastic affordable size product
+1435,Electronics,United Kingdom,96.42,2,10,173.56,5.0,40,4,comfortable sturdy worth order order
+1436,Beauty,United States,40.69,2,0,81.38,5.0,34,3,smooth worth excellent order product
+1437,Sports,Germany,191.21,2,10,344.18,4.0,17,3,beautiful sturdy comfortable color product
+1438,Beauty,Australia,23.5,2,0,47.0,3.0,50,6,size packaging size amazing
+1439,Books,United Kingdom,51.32,5,5,243.77,5.0,43,4,fast reliable fast price color
+1440,Home & Kitchen,Canada,278.55,3,0,835.65,4.0,58,6,reliable affordable reliable service size
+1441,Grocery,Spain,74.5,5,5,353.88,4.0,27,5,smooth comfortable worth item service
+1442,Clothing,Japan,111.65,1,15,94.9,4.0,26,4,reliable durable sturdy packaging item
+1443,Sports,France,50.37,4,15,171.26,3.0,24,6,service service item affordable
+1444,Clothing,Japan,56.82,5,15,241.48,4.0,43,3,durable amazing reliable size price
+1445,Books,Germany,24.09,4,20,77.09,3.0,16,7,size size order comfortable
+1446,Beauty,India,9.34,1,10,8.41,3.0,46,2,service color shipping excellent
+1447,Home & Kitchen,South Africa,317.54,4,0,1270.16,4.0,28,3,worth sturdy fantastic order order
+1448,Clothing,United Kingdom,75.28,2,5,143.03,4.0,50,3,amazing amazing quality product price
+1449,Clothing,France,96.34,3,10,260.12,3.0,34,2,price order color fantastic
+1450,Electronics,Germany,872.34,2,10,1570.21,4.0,35,1,worth great beautiful color size
+1451,Grocery,Germany,27.49,2,0,54.98,5.0,43,5,worth durable recommend delivery delivery
+1452,Clothing,India,82.14,2,10,147.85,4.0,49,1,beautiful beautiful affordable color shipping
+1453,Beauty,India,93.83,5,10,422.24,5.0,28,3,worth amazing quality order shipping
+1454,Toys,United States,103.77,4,10,373.57,3.0,40,3,order price color recommend
+1455,Sports,South Africa,148.54,5,5,705.56,4.0,32,5,beautiful sturdy smooth order price
+1456,Grocery,United Kingdom,71.16,4,10,256.18,4.0,48,7,recommend beautiful worth order size
+1457,Books,Italy,39.57,1,15,33.63,3.0,19,6,size price delivery durable
+1458,Home & Kitchen,India,97.33,4,20,311.46,4.0,22,1,sturdy recommend reliable item delivery
+1459,Beauty,United States,32.5,2,15,55.25,5.0,19,2,quality smooth beautiful packaging price
+1460,Clothing,Spain,76.4,2,0,152.8,5.0,36,7,fantastic excellent fast service packaging
+1461,Toys,Brazil,45.9,1,10,41.31,4.0,27,4,affordable great fast item color
+1462,Grocery,Japan,38.95,2,10,70.11,2.0,32,7,slow overpriced broken product size
+1463,Clothing,Germany,130.81,4,0,523.24,4.0,28,6,quality beautiful comfortable size price
+1464,Books,United Kingdom,8.0,4,5,30.4,5.0,47,5,worth worth fantastic packaging packaging
+1465,Books,India,58.53,4,0,234.12,4.0,51,5,reliable comfortable beautiful order service
+1466,Sports,Canada,29.96,2,5,56.92,3.0,37,3,price product service excellent
+1467,Sports,United Kingdom,20.54,4,10,73.94,5.0,27,4,excellent fantastic beautiful order size
+1468,Electronics,Spain,813.03,2,5,1544.76,4.0,34,3,reliable amazing quality size service
+1469,Sports,India,249.74,1,25,187.3,4.0,39,3,great sturdy quality size color
+1470,Books,United Kingdom,22.41,5,20,89.64,3.0,25,8,service product item great
+1471,Home & Kitchen,Germany,278.29,2,25,417.44,3.0,20,8,product price color amazing
+1472,Sports,India,287.42,1,20,229.94,4.0,33,4,beautiful sturdy great item product
+1473,Beauty,Mexico,94.48,3,0,283.44,4.0,27,4,great durable fast delivery packaging
+1474,Electronics,United States,233.75,5,10,1051.88,4.0,16,6,amazing fast comfortable product item
+1475,Books,India,29.76,2,5,56.54,3.0,39,1,service shipping delivery great
+1476,Clothing,South Africa,44.67,4,10,160.81,4.0,41,4,quality comfortable fantastic size color
+1477,Books,United States,50.2,1,5,47.69,4.0,30,1,amazing beautiful durable color item
+1478,Clothing,United States,72.26,4,25,216.78,3.0,46,6,color item size amazing
+1479,Beauty,South Africa,118.49,3,0,355.47,4.0,36,2,durable durable beautiful delivery delivery
+1480,Sports,Germany,71.74,1,10,64.57,3.0,29,3,price order service fast
+1481,Sports,United Kingdom,119.5,4,20,382.4,3.0,26,1,size delivery shipping smooth
+1482,Electronics,India,717.74,4,15,2440.32,4.0,21,5,amazing sturdy recommend packaging item
+1483,Books,United States,14.68,3,15,37.43,5.0,19,3,beautiful smooth affordable price packaging
+1484,Toys,France,148.23,1,0,148.23,3.0,16,8,delivery delivery shipping reliable
+1485,Clothing,Brazil,91.1,5,10,409.95,4.0,16,3,fast recommend comfortable item size
+1486,Electronics,United States,182.18,4,5,692.28,3.0,21,4,size size item durable
+1487,Books,Germany,11.27,4,0,45.08,5.0,37,3,amazing quality reliable color item
+1488,Beauty,United States,17.55,5,5,83.36,5.0,21,5,excellent durable durable delivery item
+1489,Books,India,33.83,5,5,160.69,4.0,41,6,recommend fantastic affordable order order
+1490,Grocery,United States,37.25,5,0,186.25,5.0,39,1,durable recommend beautiful delivery color
+1491,Books,India,30.52,5,20,122.08,5.0,35,7,reliable comfortable quality size item
+1492,Home & Kitchen,Germany,54.88,2,20,87.81,4.0,16,5,fantastic great quality delivery item
+1493,Clothing,India,18.99,5,5,90.2,2.0,42,2,returned flimsy slow size price
+1494,Electronics,Brazil,357.35,1,25,268.01,3.0,40,6,order shipping price worth
+1495,Toys,India,101.77,1,0,101.77,4.0,46,4,amazing durable fast size order
+1496,Clothing,United States,90.19,1,20,72.15,4.0,19,5,fantastic affordable beautiful item service
+1497,Sports,Australia,170.75,2,15,290.27,4.0,41,4,reliable durable comfortable color service
+1498,Grocery,India,12.61,4,0,50.44,5.0,33,5,affordable comfortable recommend price order
+1499,Toys,India,106.52,1,0,106.52,4.0,28,6,excellent comfortable beautiful order packaging
+1500,Electronics,United States,166.63,3,10,449.9,4.0,45,6,affordable fantastic excellent product product
+1501,Home & Kitchen,India,384.03,4,25,1152.09,4.0,56,6,affordable durable smooth order product
+1502,Grocery,United States,14.11,3,25,31.75,4.0,41,3,quality sturdy amazing product order
+1503,Home & Kitchen,Nigeria,366.42,5,5,1740.5,3.0,30,2,order item color comfortable
+1504,Home & Kitchen,Mexico,193.97,4,0,775.88,4.0,37,3,fantastic smooth recommend product shipping
+1505,Home & Kitchen,India,135.42,4,0,541.68,4.0,39,7,great durable affordable packaging price
+1506,Sports,South Africa,170.32,4,20,545.02,5.0,48,2,smooth comfortable quality color size
+1507,Clothing,South Africa,73.78,4,10,265.61,5.0,38,7,fast excellent great order color
+1508,Clothing,United States,44.11,4,0,176.44,4.0,37,5,worth comfortable smooth delivery price
+1509,Electronics,Spain,160.64,2,20,257.02,3.0,16,6,packaging packaging item sturdy
+1510,Beauty,United States,110.17,5,0,550.85,3.0,45,3,item service product smooth
+1511,Toys,France,42.9,3,5,122.26,4.0,45,4,beautiful sturdy sturdy size packaging
+1512,Toys,India,102.8,4,0,411.2,4.0,40,7,great worth amazing delivery order
+1513,Electronics,Nigeria,293.74,1,5,279.05,5.0,32,2,recommend comfortable smooth delivery color
+1514,Toys,Brazil,49.41,5,0,247.05,,43,6,price order order smooth
+1515,Clothing,Australia,112.46,3,5,320.51,4.0,22,2,durable comfortable great delivery order
+1516,Electronics,United States,749.17,5,5,3558.56,4.0,23,6,smooth durable reliable item shipping
+1517,Clothing,Canada,32.75,1,0,32.75,5.0,34,2,affordable great comfortable shipping order
+1518,Home & Kitchen,United Kingdom,193.05,2,0,386.1,3.0,29,8,color color order smooth
+1519,Grocery,France,21.23,4,0,84.92,4.0,42,8,smooth excellent fast color product
+1520,Home & Kitchen,United States,286.43,5,10,1288.94,5.0,33,5,excellent durable worth item size
+1521,Clothing,Brazil,110.62,3,15,282.08,3.0,27,6,size size order comfortable
+1522,Books,United States,39.73,3,0,119.19,5.0,36,3,fast sturdy quality packaging item
+1523,Electronics,India,839.8,3,20,2015.52,4.0,30,4,fast durable comfortable product delivery
+1524,Home & Kitchen,Brazil,183.34,1,0,183.34,5.0,43,3,quality recommend amazing service item
+1525,Sports,Nigeria,85.76,3,10,231.55,4.0,46,5,durable quality smooth order service
+1526,Home & Kitchen,United States,159.12,1,25,119.34,4.0,44,6,worth sturdy excellent price delivery
+1527,Beauty,India,42.6,1,10,38.34,3.0,31,5,packaging product shipping beautiful
+1528,Books,Germany,16.86,4,0,67.44,4.0,16,7,smooth quality fast color service
+1529,Clothing,Brazil,108.19,3,20,259.66,5.0,33,1,quality recommend durable packaging item
+1530,Electronics,India,492.64,2,5,936.02,4.0,22,5,sturdy sturdy great delivery price
+1531,Clothing,India,97.76,5,0,488.8,4.0,44,6,reliable affordable affordable size product
+1532,Grocery,India,43.11,4,10,155.2,4.0,46,4,quality smooth sturdy shipping item
+1533,Toys,Italy,24.16,5,25,90.6,4.0,29,3,reliable durable sturdy order shipping
+1534,Clothing,India,27.75,4,10,99.9,5.0,20,4,worth quality excellent product service
+1535,Sports,United States,281.81,1,5,267.72,5.0,42,9,reliable comfortable affordable item color
+1536,Beauty,Spain,102.84,2,10,185.11,4.0,38,5,amazing fantastic sturdy packaging order
+1537,Clothing,India,118.24,3,5,336.98,4.0,42,1,comfortable great beautiful shipping delivery
+1538,Electronics,United States,631.34,3,5,1799.32,3.0,31,1,price size delivery fantastic
+1539,Beauty,Italy,40.04,1,20,32.03,5.0,41,2,sturdy worth beautiful size color
+1540,Beauty,India,99.94,3,20,239.86,4.0,33,2,amazing worth amazing price order
+1541,Electronics,Germany,620.3,4,15,2109.02,4.0,31,4,fast quality fast product color
+1542,Books,United States,45.01,3,0,135.03,3.0,48,3,item packaging packaging fantastic
+1543,Beauty,United Kingdom,112.52,3,15,286.93,4.0,34,3,recommend fast reliable item color
+1544,Beauty,Spain,65.37,2,10,117.67,5.0,46,9,great durable reliable packaging item
+1545,Toys,United Kingdom,62.12,4,0,248.48,3.0,44,5,price order item excellent
+1546,Grocery,Germany,51.19,1,15,43.51,3.0,62,7,item color product comfortable
+1547,Beauty,India,116.65,4,0,466.6,4.0,28,3,fast amazing affordable price shipping
+1548,Grocery,India,18.32,3,10,49.46,3.0,35,5,packaging order item worth
+1549,Clothing,Canada,120.45,2,20,192.72,3.0,35,4,shipping color order sturdy
+1550,Sports,United States,242.56,4,15,824.7,4.0,34,1,smooth quality quality order order
+1551,Books,Mexico,13.75,4,10,49.5,3.0,33,5,order service delivery amazing
+1552,Electronics,India,216.77,2,0,433.54,3.0,44,5,order packaging delivery great
+1553,Toys,India,138.46,3,15,353.07,5.0,20,5,durable durable fast shipping item
+1554,Electronics,France,624.83,5,10,2811.74,5.0,20,6,smooth quality affordable delivery product
+1555,Home & Kitchen,Germany,165.9,5,0,829.5,4.0,29,4,comfortable great amazing color price
+1556,Beauty,Canada,105.23,1,0,105.23,,23,7,worth durable affordable size price
+1557,Home & Kitchen,Japan,25.14,2,10,45.25,2.0,32,5,slow broken poor product product
+1558,Sports,India,175.16,2,10,315.29,2.0,36,9,uncomfortable returned poor product service
+1559,Home & Kitchen,India,279.39,2,0,558.78,5.0,41,5,comfortable reliable beautiful color shipping
+1560,Grocery,Brazil,34.91,4,20,111.71,5.0,37,3,fantastic comfortable durable shipping product
+1561,Clothing,India,109.36,3,0,328.08,4.0,39,5,worth beautiful affordable service service
+1562,Clothing,Italy,142.3,4,15,483.82,4.0,57,6,quality quality affordable product packaging
+1563,Clothing,France,102.96,1,0,102.96,5.0,26,5,comfortable reliable recommend price order
+1564,Home & Kitchen,India,60.37,5,10,271.66,5.0,31,1,recommend comfortable reliable color item
+1565,Beauty,Brazil,17.87,1,15,15.19,3.0,56,4,shipping color order recommend
+1566,Electronics,Netherlands,530.0,5,10,2385.0,4.0,37,9,recommend sturdy fantastic order color
+1567,Electronics,Japan,183.0,2,20,292.8,4.0,30,6,durable beautiful smooth packaging delivery
+1568,Clothing,Spain,46.72,1,0,46.72,5.0,25,6,fast beautiful affordable service price
+1569,Books,India,38.98,4,10,140.33,3.0,41,5,size shipping packaging great
+1570,Beauty,Brazil,74.67,2,25,112.0,,16,3,order product size worth
+1571,Toys,United States,136.93,1,15,116.39,4.0,35,6,fast beautiful great packaging item
+1572,Sports,Spain,168.36,3,0,505.08,5.0,24,6,sturdy worth quality item packaging
+1573,Sports,France,192.27,4,0,769.08,4.0,31,9,great quality durable shipping item
+1574,Books,India,26.1,1,0,26.1,3.0,22,6,packaging shipping color sturdy
+1575,Toys,France,41.05,1,25,30.79,4.0,16,5,fantastic fantastic smooth service color
+1576,Home & Kitchen,Japan,279.61,1,15,237.67,4.0,16,5,quality sturdy fast item color
+1577,Books,Canada,16.65,2,25,24.98,4.0,42,5,smooth great comfortable size shipping
+1578,Sports,Italy,259.64,1,20,207.71,4.0,42,2,great fantastic beautiful size product
+1579,Electronics,Netherlands,873.21,4,10,3143.56,5.0,44,7,durable amazing beautiful product product
+1580,Sports,Australia,152.86,1,0,152.86,3.0,24,7,color size price fantastic
+1581,Books,United States,50.03,5,10,225.14,2.0,27,8,slow disappointing uncomfortable packaging product
+1582,Sports,Italy,292.81,4,5,1112.68,2.0,57,5,disappointing disappointing cheap order service
+1583,Grocery,South Africa,16.65,3,5,47.45,5.0,34,3,worth smooth smooth product shipping
+1584,Electronics,Germany,531.57,4,0,2126.28,3.0,16,4,order service price durable
+1585,Electronics,United States,163.51,1,0,163.51,4.0,40,8,durable recommend durable size delivery
+1586,Clothing,India,117.4,4,0,469.6,5.0,47,3,quality excellent recommend item service
+1587,Clothing,France,19.7,1,20,15.76,3.0,31,4,size delivery size great
+1588,Grocery,Mexico,23.61,5,20,94.44,3.0,43,5,shipping packaging item fast
+1589,Clothing,France,30.97,2,15,52.65,3.0,28,7,price packaging color reliable
+1590,Grocery,India,8.61,4,15,29.27,3.0,30,3,shipping color shipping recommend
+1591,Grocery,Brazil,70.33,2,10,126.59,4.0,42,6,fast recommend reliable product order
+1592,Beauty,India,49.74,4,10,179.06,3.0,40,6,order order delivery excellent
+1593,Grocery,France,49.97,2,0,99.94,5.0,26,3,sturdy durable amazing product product
+1594,Electronics,Italy,299.08,3,10,807.52,5.0,31,4,fast comfortable sturdy size delivery
+1595,Grocery,Mexico,36.71,5,10,165.2,4.0,40,5,recommend excellent beautiful size shipping
+1596,Sports,United Kingdom,171.66,2,15,291.82,4.0,23,4,amazing recommend fast shipping item
+1597,Grocery,Brazil,16.17,3,15,41.23,4.0,35,5,beautiful reliable sturdy delivery service
+1598,Sports,India,96.91,1,10,87.22,5.0,26,4,reliable quality amazing service order
+1599,Beauty,United States,66.25,5,20,265.0,4.0,51,2,great affordable durable order price
