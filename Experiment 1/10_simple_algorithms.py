@@ -1,27 +1,45 @@
 def linear_search(items, target):
+    found_index = -1
     for index, value in enumerate(items):
         if value == target:
-            return index
-    return -1
+            found_index = index
+            break
+    return found_index
 
 def bubble_sort(items):
-    items = items.copy()
-    n = len(items)
-    for i in range(n):
-        for j in range(n - i - 1):
-            if items[j] > items[j + 1]:
-                items[j], items[j + 1] = items[j + 1], items[j]
-    return items
+    sorted_items = items.copy()
+    length = len(sorted_items)
+    for i in range(length):
+        for j in range(length - i - 1):
+            current_value = sorted_items[j]
+            next_value = sorted_items[j + 1]
+            if current_value > next_value:
+                sorted_items[j] = next_value
+                sorted_items[j + 1] = current_value
+    return sorted_items
 
 def is_prime(n):
+    prime = True
     if n < 2:
-        return False
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
+        prime = False
+    else:
+        upper_bound = int(n ** 0.5) + 1
+        for i in range(2, upper_bound):
+            if n % i == 0:
+                prime = False
+                break
+    return prime
 
 numbers = [5, 2, 9, 1, 5, 6]
-print(linear_search(numbers, 9))
-print(bubble_sort(numbers))
-print([n for n in range(2, 30) if is_prime(n)])
+search_target = 9
+
+prime_start = 2
+prime_stop = 30
+
+search_result = linear_search(numbers, search_target)
+sorted_numbers = bubble_sort(numbers)
+primes = [n for n in range(prime_start, prime_stop) if is_prime(n)]
+
+print(search_result)
+print(sorted_numbers)
+print(primes)
