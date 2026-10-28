@@ -1,29 +1,41 @@
 def classify_number(n):
     if n > 0:
-        return "positive"
+        label = "positive"
     elif n < 0:
-        return "negative"
+        label = "negative"
     else:
-        return "zero"
+        label = "zero"
+    return label
 
-for num in [10, -5, 0]:
-    print(num, classify_number(num))
+numbers = [10, -5, 0]
 
-for i in range(1, 16):
+for num in numbers:
+    classification = classify_number(num)
+    print(num, classification)
+
+start = 1
+stop = 16
+
+for i in range(start, stop):
     if i % 15 == 0:
-        print("FizzBuzz")
+        output = "FizzBuzz"
     elif i % 3 == 0:
-        print("Fizz")
+        output = "Fizz"
     elif i % 5 == 0:
-        print("Buzz")
+        output = "Buzz"
     else:
-        print(i)
+        output = i
+    print(output)
 
 count = 0
-while count < 10:
+limit = 10
+max_print = 7
+
+while count < limit:
     count += 1
-    if count % 2 == 0:
+    is_even = count % 2 == 0
+    if is_even:
         continue
-    if count > 7:
+    if count > max_print:
         break
     print(count)
