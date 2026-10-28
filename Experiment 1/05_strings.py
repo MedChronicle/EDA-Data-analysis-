@@ -1,22 +1,48 @@
 text = "  Python is Powerful, Python is Elegant!  "
 
-print(text.strip())
-print(text.lower().strip())
-print(text.upper().strip())
-print(text.replace("Python", "Java").strip())
-print(text.split())
-print(text.count("Python"))
+old_word = "Python"
+new_word = "Java"
+
+stripped_text = text.strip()
+lower_text = text.lower().strip()
+upper_text = text.upper().strip()
+replaced_text = text.replace(old_word, new_word).strip()
+split_text = text.split()
+python_count = text.count(old_word)
+
+print(stripped_text)
+print(lower_text)
+print(upper_text)
+print(replaced_text)
+print(split_text)
+print(python_count)
 
 words = ["Data", "Science", "with", "Python"]
-print(" ".join(words))
-print("-".join(words))
+
+space_separator = " "
+dash_separator = "-"
+
+space_joined = space_separator.join(words)
+dash_joined = dash_separator.join(words)
+
+print(space_joined)
+print(dash_joined)
 
 sample = "Hello, World!"
-print(sample[:5])
-print(sample[-6:])
-print(sample[::-1])
+
+first_five = sample[:5]
+last_six = sample[-6:]
+reversed_sample = sample[::-1]
+
+print(first_five)
+print(last_six)
+print(reversed_sample)
 
 name = "Sara"
 score = 92.5
-print(f"{name} scored {score:.1f}")
-print("{} scored {}".format(name, score))
+
+fstring_message = f"{name} scored {score:.1f}"
+format_message = "{} scored {}".format(name, score)
+
+print(fstring_message)
+print(format_message)
