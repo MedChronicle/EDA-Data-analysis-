@@ -1,16 +1,19 @@
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("happiness.csv")
+csv_file = "happiness.csv"
+df = pd.read_csv(csv_file)
 
 print("TASK -> LOAD THE DATASET")
 
-print("FIRST 5 ROWS -> ")
-print(df.head()) 
+first_rows = df.head()
+last_rows = df.tail()
 
+print("FIRST 5 ROWS -> ")
+print(first_rows)
 
 print("LAST 5 ROWS -> ")
-print(df.tail())
+print(last_rows)
 
 shape_of_data = df.shape
 print("Dataset Shape is:")
@@ -18,33 +21,43 @@ print(shape_of_data)
 
 print("Q1. How many records are present in the dataset?")
 total_rows = len(df)
-print("Answer: " + str(total_rows) + " records")
+rows_answer = "Answer: " + str(total_rows) + " records"
+print(rows_answer)
 
 print("Q2. How many features (columns) are available?")
 total_cols = len(df.columns)
-print("Answer: " + str(total_cols) + " columns")
+cols_answer = "Answer: " + str(total_cols) + " columns"
+print(cols_answer)
 
 print("TASK  DISPLAY METADATA")
 
+column_names = df.columns
+column_types = df.dtypes
+empty_line = ""
+
 print("Column Names:")
-print(df.columns)
-print("")
+print(column_names)
+print(empty_line)
 
 print("Data Types of Columns:")
-print(df.dtypes)
+print(column_types)
 
 print("Dataset Info:")
-df.info() 
+df.info()
+
+summary_stats = df.describe()
 print("Descriptive Statistics:")
-print(df.describe())
+print(summary_stats)
 
 print("Q1. What is the average occupational prestige score?")
 avg_prestige = df["prestige"].mean()
-print("Answer: " + str(avg_prestige)) 
+avg_prestige_answer = "Answer: " + str(avg_prestige)
+print(avg_prestige_answer)
 
 print("Q2. Which feature has the highest standard deviation?")
+std_values = df.std(numeric_only=True)
 print("Standard deviation for each column:")
-print(df.std(numeric_only=True))
+print(std_values)
 
 print("Q3. How many people fall into each happiness category?")
 happy_counts = df["happy"].value_counts()
@@ -52,21 +65,24 @@ print(happy_counts)
 
 print("Q4. How many different survey years does this dataset cover?")
 unique_years = df["year"].nunique()
-print("Answer: " + str(unique_years) + " years")
+years_answer = "Answer: " + str(unique_years) + " years"
+print(years_answer)
 
-print("Missing values count for each column:")
 missing_stuff = df.isnull().sum()
+print("Missing values count for each column:")
 print(missing_stuff)
 
+missing_pct = (missing_stuff / total_rows) * 100
 print("Missing values percentage:")
-missing_pct = (df.isnull().sum() / len(df)) * 100
 print(missing_pct)
 
+missing_sorted = missing_stuff.sort_values(ascending=False)
 print("Missing values sorted:")
-print(missing_stuff.sort_values(ascending=False))
+print(missing_sorted)
 
 print("What percentage of data is missing overall?")
-total_missing = df.isnull().sum().sum()
-total_cells = len(df) * len(df.columns)
+total_missing = missing_stuff.sum()
+total_cells = total_rows * total_cols
 overall_percent = (total_missing / total_cells) * 100
-print("Answer: " + str(overall_percent) + "%")
+overall_answer = "Answer: " + str(overall_percent) + "%"
+print(overall_answer)
