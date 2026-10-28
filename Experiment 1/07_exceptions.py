@@ -1,27 +1,41 @@
 def divide(a, b):
+    division_result = None
     try:
-        result = a / b
+        quotient = a / b
     except ZeroDivisionError:
-        print("Cannot divide by zero")
-        return None
+        error_message = "Cannot divide by zero"
+        print(error_message)
     else:
-        print("Division successful")
-        return result
+        success_message = "Division successful"
+        print(success_message)
+        division_result = quotient
     finally:
-        print("Done trying division")
+        done_message = "Done trying division"
+        print(done_message)
+    return division_result
 
-print(divide(10, 2))
-print(divide(10, 0))
+numerator = 10
+good_divisor = 2
+bad_divisor = 0
+
+first_result = divide(numerator, good_divisor)
+print(first_result)
+
+second_result = divide(numerator, bad_divisor)
+print(second_result)
 
 class InvalidAgeError(Exception):
     pass
 
 def check_age(age):
     if age < 0:
-        raise InvalidAgeError("Age cannot be negative")
+        negative_age_message = "Age cannot be negative"
+        raise InvalidAgeError(negative_age_message)
     return age
 
+invalid_age = -5
+
 try:
-    check_age(-5)
+    checked_age = check_age(invalid_age)
 except InvalidAgeError as e:
     print(e)
