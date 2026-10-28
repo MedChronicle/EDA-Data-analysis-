@@ -4,29 +4,44 @@ class Animal:
         self.sound = sound
 
     def make_sound(self):
-        return f"{self.name} says {self.sound}"
+        sound_message = f"{self.name} says {self.sound}"
+        return sound_message
 
 class Dog(Animal):
     def __init__(self, name, breed):
-        super().__init__(name, "Woof")
+        dog_sound = "Woof"
+        super().__init__(name, dog_sound)
         self.breed = breed
 
     def fetch(self):
-        return f"{self.name} the {self.breed} fetches the ball"
+        fetch_message = f"{self.name} the {self.breed} fetches the ball"
+        return fetch_message
 
 class Cat(Animal):
     def __init__(self, name):
-        super().__init__(name, "Meow")
+        cat_sound = "Meow"
+        super().__init__(name, cat_sound)
 
-dog = Dog("Rex", "Labrador")
-cat = Cat("Whiskers")
+dog_name = "Rex"
+dog_breed = "Labrador"
+cat_name = "Whiskers"
 
-print(dog.make_sound())
-print(dog.fetch())
-print(cat.make_sound())
+dog = Dog(dog_name, dog_breed)
+cat = Cat(cat_name)
 
-print(isinstance(dog, Animal))
-print(issubclass(Dog, Animal))
+dog_sound_message = dog.make_sound()
+dog_fetch_message = dog.fetch()
+cat_sound_message = cat.make_sound()
+
+print(dog_sound_message)
+print(dog_fetch_message)
+print(cat_sound_message)
+
+dog_is_animal = isinstance(dog, Animal)
+dog_class_is_subclass = issubclass(Dog, Animal)
+
+print(dog_is_animal)
+print(dog_class_is_subclass)
 
 class BankAccount:
     def __init__(self, owner, balance=0):
@@ -38,11 +53,19 @@ class BankAccount:
 
     def withdraw(self, amount):
         if amount > self.balance:
-            print("Insufficient funds")
+            insufficient_message = "Insufficient funds"
+            print(insufficient_message)
         else:
             self.balance -= amount
 
-account = BankAccount("Dana", 100)
-account.deposit(50)
-account.withdraw(30)
-print(account.balance)
+account_owner = "Dana"
+starting_balance = 100
+deposit_amount = 50
+withdraw_amount = 30
+
+account = BankAccount(account_owner, starting_balance)
+account.deposit(deposit_amount)
+account.withdraw(withdraw_amount)
+
+final_balance = account.balance
+print(final_balance)
