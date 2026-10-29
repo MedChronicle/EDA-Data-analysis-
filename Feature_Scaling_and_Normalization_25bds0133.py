@@ -1,44 +1,47 @@
-
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler
+from sklearn.preprocessing import MinMaxScaler, RobustScaler, StandardScaler
 
-df = pd.read_csv('fraudTrain.csv')
+INPUT_PATH = "fraudTrain.csv"
+OUTPUT_PATH = "fraudTrain_scaled.csv"
+CANDIDATE_COLS = ["amt", "lat", "long", "city_pop", "merch_lat", "merch_long"]
+TARGET_COL = "is_fraud"
 
-candidate_cols = ['amt', 'lat', 'long', 'city_pop', 'merch_lat', 'merch_long']
-numeric_cols = [c for c in candidate_cols if c in df.columns]
+SCALERS = {
+    "minmax": MinMaxScaler(),
+    "standard": StandardScaler(),
+    "robust": RobustScaler(),
+}
+
+df = pd.read_csv(INPUT_PATH)
+
+numeric_cols = [c for c in CANDIDATE_COLS if c in df.columns]
+if not numeric_cols:
+    raise ValueError(f"None of the expected columns were found: {CANDIDATE_COLS}")
+
+features = df[numeric_cols].apply(pd.to_numeric, errors="coerce")
+missing = int(features.isna().sum().sum())
+if missing:
+    print(f"Filling {missing} missing value(s) with column medians")
+    features = features.fillna(features.median())
 
 print("Numeric columns used:", numeric_cols)
 print("\nOriginal data (first 5 rows):")
-print(df[numeric_cols].head())
+print(features.head())
 
-min_max_scaler = MinMaxScaler()
-df_minmax = pd.DataFrame(
-    min_max_scaler.fit_transform(df[numeric_cols]),
-    columns=[c + '_minmax' for c in numeric_cols]
-)
+scaled_frames = []
+for name, scaler in SCALERS.items():
+    scaler.set_output(transform="pandas")
+    scaled = scaler.fit_transform(features).add_suffix(f"_{name}")
+    scaled_frames.append(scaled)
 
-standard_scaler = StandardScaler()
-df_standard = pd.DataFrame(
-    standard_scaler.fit_transform(df[numeric_cols]),
-    columns=[c + '_standard' for c in numeric_cols]
-)
+    print(f"\n{name.capitalize()} scaled data (first 5 rows):")
+    print(scaled.head())
+    print(f"\n{name.capitalize()} scaling summary:")
+    print(scaled.agg(["min", "max", "mean", "std"]).round(3))
 
-robust_scaler = RobustScaler()
-df_robust = pd.DataFrame(
-    robust_scaler.fit_transform(df[numeric_cols]),
-    columns=[c + '_robust' for c in numeric_cols]
-)
+result = pd.concat([features, *scaled_frames], axis=1)
+if TARGET_COL in df.columns:
+    result.insert(0, TARGET_COL, df[TARGET_COL])
 
-result = pd.concat([df[numeric_cols], df_minmax, df_standard, df_robust], axis=1)
-
-print("\nMin-Max scaled data (first 5 rows):")
-print(df_minmax.head())
-
-print("\nStandardized data (first 5 rows):")
-print(df_standard.head())
-
-print("\nRobust scaled data (first 5 rows):")
-print(df_robust.head())
-
-result.to_csv('fraudTrain_scaled.csv', index=False)
-print("\nSaved all scaled features to fraudTrain_scaled.csv")
+result.to_csv(OUTPUT_PATH, index=False, float_format="%.6f")
+print(f"\nSaved {result.shape[1]} columns and {result.shape[0]} rows to {OUTPUT_PATH}")
