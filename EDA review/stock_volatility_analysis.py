@@ -2,6 +2,10 @@ import warnings
 warnings.filterwarnings("ignore")
 import numpy as np
 import pandas as pd
+import matplotlib
+import os
+if not os.environ.get("DISPLAY") and os.name != "nt":
+    matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats, optimize
@@ -10,11 +14,14 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score, mean_absolute_error, r2_score
-from sklearn.ensemble import IsolationForest, RandomForestRegressor
+from sklearn.ensemble import IsolationForest, RandomForestRegressor, HistGradientBoostingRegressor
+from sklearn.covariance import LedoitWolf
 from sklearn.linear_model import Ridge
 
 FILE = "stock_market_vitality_eda.csv"
 TRADING_DAYS = 252
+COST_BPS = 10          # one-way trading cost for strategy backtests
+SEED = 42
 
 sns.set_style("whitegrid")
 plt.rcParams.update({"figure.dpi": 100, "axes.titlesize": 11, "axes.labelsize": 9})
@@ -88,7 +95,7 @@ def performance(returns):
     returns = returns.dropna()
     avg = returns.mean()
     vol = returns.std()
-    downside = returns[returns < 0].std()
+    downside = np.sqrt(np.mean(np.minimum(returns, 0) ** 2))   # downside deviation vs 0 target
     var95 = returns.quantile(.05)
     var99 = returns.quantile(.01)
     return pd.Series({
@@ -96,7 +103,7 @@ def performance(returns):
         "Median_%": returns.median(),
         "Std_%": vol,
         "Variance": returns.var(),
-        "CV": vol / abs(avg),
+        "CV": vol / abs(avg) if avg != 0 else np.nan,
         "Skew": returns.skew(),
         "ExKurt": returns.kurt(),
         "Min_%": returns.min(),
@@ -112,6 +119,81 @@ def performance(returns):
         "CVaR95_%": returns[returns <= var95].mean(),
         "WinRate_%": (returns > 0).mean() * 100,
     })
+
+
+def bh_adjust(pvals):
+    """Benjamini-Hochberg FDR-adjusted p-values."""
+    p = np.asarray(pvals, float)
+    order = np.argsort(p)
+    ranked = p[order] * len(p) / (np.arange(len(p)) + 1)
+    adj = np.minimum.accumulate(ranked[::-1])[::-1].clip(max=1)
+    out = np.empty_like(adj)
+    out[order] = adj
+    return out
+
+
+def fit_garch(x, gjr=False):
+    """Gaussian-QMLE GARCH(1,1) / GJR-GARCH(1,1) in %-returns. Returns dict or None."""
+    x = np.asarray(x, float)
+    x = x[~np.isnan(x)]
+    x = x - x.mean()
+    var0 = x.var()
+
+    def recursion(p):
+        omega, alpha, beta, gamma = p
+        s2 = np.empty(len(x))
+        s2[0] = var0
+        for t in range(1, len(x)):
+            neg = x[t - 1] < 0
+            s2[t] = omega + (alpha + gamma * neg) * x[t - 1] ** 2 + beta * s2[t - 1]
+        return s2
+
+    def nll(p):
+        s2 = recursion(p)
+        if np.any(s2 <= 0) or not np.all(np.isfinite(s2)):
+            return 1e10
+        return 0.5 * np.sum(np.log(2 * np.pi * s2) + x ** 2 / s2)
+
+    g0 = 0.05 if gjr else 0.0
+    cons = [{"type": "ineq", "fun": lambda p: 0.999 - (p[1] + p[2] + 0.5 * p[3])}]
+    bnds = [(1e-6, None), (0, 0.5), (0, 0.999), (0, 0.5) if gjr else (0, 0)]
+    res = optimize.minimize(nll, [var0 * 0.05, 0.05, 0.90, g0], bounds=bnds,
+                            constraints=cons, method="SLSQP")
+    if not res.success and not np.isfinite(res.fun):
+        return None
+    omega, alpha, beta, gamma = res.x
+    s2 = recursion(res.x)
+    persistence = alpha + beta + 0.5 * gamma
+    k_params = 4 if gjr else 3
+    return {"omega": omega, "alpha": alpha, "beta": beta, "gamma": gamma,
+            "Persistence": persistence,
+            "HalfLife_days": np.log(.5) / np.log(persistence) if 0 < persistence < 1 else np.nan,
+            "LongRun_Vol_%": np.sqrt(omega / (1 - persistence)) if persistence < 1 else np.nan,
+            "LogLik": -res.fun, "AIC": 2 * k_params + 2 * res.fun,
+            "sigma": np.sqrt(s2), "x": x,
+            "std_resid": x / np.sqrt(s2), "last_s2": s2[-1], "params": res.x}
+
+
+def christoffersen(hits):
+    """Christoffersen independence test for VaR breach sequence."""
+    h = np.asarray(hits, int)
+    n00 = np.sum((h[:-1] == 0) & (h[1:] == 0)); n01 = np.sum((h[:-1] == 0) & (h[1:] == 1))
+    n10 = np.sum((h[:-1] == 1) & (h[1:] == 0)); n11 = np.sum((h[:-1] == 1) & (h[1:] == 1))
+    if min(n00 + n01, n10 + n11) == 0 or (n01 + n11) == 0:
+        return np.nan, np.nan
+    pi01, pi11 = n01 / (n00 + n01), n11 / max(n10 + n11, 1)
+    pi = (n01 + n11) / (n00 + n01 + n10 + n11)
+    def ll(p, a, b):
+        p = np.clip(p, 1e-12, 1 - 1e-12)
+        return a * np.log(1 - p) + b * np.log(p)
+    lr = -2 * (ll(pi, n00 + n10, n01 + n11) - ll(pi01, n00, n01) - ll(pi11, n10, n11))
+    return lr, 1 - stats.chi2.cdf(lr, 1)
+
+
+def qlike(actual, pred):
+    a, p = np.asarray(actual, float) ** 2, np.asarray(pred, float) ** 2
+    ok = (a > 0) & (p > 0)
+    return np.mean(a[ok] / p[ok] - np.log(a[ok] / p[ok]) - 1)
 
 
 section("1. LOAD, CLEAN, VALIDATE")
@@ -485,7 +567,9 @@ for sym in symbols:
     t_val, p_val = stats.ttest_1samp(returns[sym].dropna(), 0)
     ttest_rows[sym] = {"t_stat": t_val, "p_value": p_val}
 ttests = pd.DataFrame(ttest_rows).T
+ttests["p_BH_adj"] = bh_adjust(ttests.p_value.values)
 ttests["Mean_ret_sig_at_5%"] = ttests.p_value < .05
+ttests["Sig_after_FDR"] = ttests.p_BH_adj < .05
 print("One-sample t-test (mean daily return = 0):\n", ttests.round(4).to_string())
 
 stock_groups = [returns[sym].dropna() for sym in symbols]
@@ -623,7 +707,10 @@ save_fig(fig, "fig_13_risk_profiling.png")
 
 section("11. PORTFOLIO OPTIMISATION")
 mu = returns.mean().values * TRADING_DAYS
-cov = returns.cov().values * TRADING_DAYS
+cov_sample = returns.cov().values * TRADING_DAYS
+lw = LedoitWolf().fit(returns.fillna(0).values)
+cov = lw.covariance_ * TRADING_DAYS                 # shrinkage: far more stable than the sample covariance
+print(f"Ledoit-Wolf shrinkage intensity: {lw.shrinkage_:.3f}")
 rng = np.random.default_rng(42)
 
 random_weights = rng.dirichlet(np.ones(n), 6000)
@@ -649,10 +736,23 @@ for target in np.linspace(mu.min() * 1.02, mu.max() * .98, 30):
         frontier.append((np.sqrt(sol.x @ cov @ sol.x), target))
 frontier = np.array(frontier)
 
+def risk_parity_weights(c):
+    f = lambda w: np.sum((w * (c @ w) / (w @ c @ w) - 1 / len(w)) ** 2)
+    return optimize.minimize(f, np.ones(len(c)) / len(c), bounds=[(0, 1)] * len(c),
+                             constraints=constraints, method="SLSQP").x
+
+
+# cap single-name weight at 40% (or equal weight if too few stocks) to avoid corner solutions
+cap = max(.4, 1.5 / n)
+capped_bounds = [(0, cap)] * n
+max_sharpe_cap = optimize.minimize(lambda w: -(w @ mu) / np.sqrt(w @ cov @ w), equal_w,
+                                   bounds=capped_bounds, constraints=constraints, method="SLSQP")
 weights = pd.DataFrame({
     "Equal_Weight": equal_w,
     "Min_Variance": min_var.x,
+    "Risk_Parity": risk_parity_weights(cov),
     "Max_Sharpe": max_sharpe.x,
+    "Max_Sharpe_Capped": max_sharpe_cap.x,
 }, index=symbols)
 print((weights * 100).round(2).to_string())
 
@@ -680,53 +780,123 @@ plt.colorbar(scatter, ax=axes[0], label="Sharpe")
 save_fig(fig, "fig_14_portfolio.png")
 
 
-section("12. VOLATILITY FORECASTING (CHRONOLOGICAL SPLIT)")
-model_df = df.copy()
-model_df["Ret_5"] = model_df.groupby("Symbol")["Daily_Return"].transform(lambda s: s.rolling(5).mean())
-model_df["Target"] = model_df.groupby("Symbol")["Daily_Return"].transform(
-    lambda s: s.rolling(10).std().shift(-10))
+section("12A. GARCH / GJR-GARCH VOLATILITY MODELS")
+garch_rows, garch_fits = {}, {}
+for sym in symbols:
+    base_fit = fit_garch(returns[sym], gjr=False)
+    gjr_fit = fit_garch(returns[sym], gjr=True)
+    if base_fit is None or gjr_fit is None:
+        continue
+    garch_fits[sym] = gjr_fit if gjr_fit["AIC"] < base_fit["AIC"] else base_fit
+    lb_std = ljung_box(garch_fits[sym]["std_resid"] ** 2)[1]
+    garch_rows[sym] = {
+        "alpha": base_fit["alpha"], "beta": base_fit["beta"], "Persist": base_fit["Persistence"],
+        "HalfLife_d": base_fit["HalfLife_days"], "LongRun_Vol_%": base_fit["LongRun_Vol_%"],
+        "GJR_gamma": gjr_fit["gamma"], "AIC_GARCH": base_fit["AIC"], "AIC_GJR": gjr_fit["AIC"],
+        "Best": "GJR" if gjr_fit["AIC"] < base_fit["AIC"] else "GARCH",
+        "ResidSq_LB_p": lb_std,
+    }
+garch_table = pd.DataFrame(garch_rows).T
+print(garch_table.to_string())
+print("\nResidSq_LB_p > 0.05 means the model removed the volatility clustering.")
+print("GJR_gamma > 0 means bad news raises volatility more than good news (leverage effect).")
 
-features = ["Volatility_20D", "EWMA_Vol", "Park_Vol", "GK_Vol", "Absolute_Return",
-            "Range_Pct", "Vol_Z", "RSI", "Ret_5", "Drawdown"]
-model_df = model_df.dropna(subset=features + ["Target"])
+section("12B. VOLATILITY FORECASTING (WALK-FORWARD, EMBARGOED)")
+HORIZON = 10
+model_df = df.copy()
+g_ret = model_df.groupby("Symbol")["Daily_Return"]
+model_df["Ret_5"] = g_ret.transform(lambda s: s.rolling(5).mean())
+model_df["Vol_5D"] = g_ret.transform(lambda s: s.rolling(5).std())
+model_df["Vol_60D"] = g_ret.transform(lambda s: s.rolling(60).std())
+model_df["Down_Vol_20D"] = g_ret.transform(lambda s: s.where(s < 0).rolling(20, min_periods=5).std())
+model_df["Vol_Ratio"] = model_df["Vol_5D"] / model_df["Vol_60D"].replace(0, np.nan)
+model_df["Mkt_Vol"] = model_df.Date.map(vol20.mean(axis=1))
+model_df["Rel_Vol"] = model_df["Volatility_20D"] / model_df["Mkt_Vol"].replace(0, np.nan)
+model_df["Log_Vol20"] = np.log(model_df["Volatility_20D"].clip(lower=1e-6))
+# forward realised volatility over the NEXT HORIZON days (strictly after today)
+model_df["Target"] = g_ret.transform(lambda s: s.rolling(HORIZON).std().shift(-HORIZON))
+model_df["Log_Target"] = np.log(model_df["Target"].clip(lower=1e-6))
+
+features = ["Volatility_20D", "Vol_5D", "Vol_60D", "Down_Vol_20D", "Vol_Ratio", "Rel_Vol", "Mkt_Vol",
+            "EWMA_Vol", "Park_Vol", "GK_Vol", "Absolute_Return", "Range_Pct", "Vol_Z", "RSI",
+            "Ret_5", "Drawdown", "Log_Vol20"]
+model_df = model_df.replace([np.inf, -np.inf], np.nan).dropna(subset=features + ["Target", "Log_Target"])
 
 all_dates = np.sort(model_df.Date.unique())
-cutoff = all_dates[int(len(all_dates) * .8)]
-train = model_df[model_df.Date < cutoff]
-test = model_df[model_df.Date >= cutoff]
-print(f"Train: {len(train)} rows to {pd.Timestamp(cutoff).date()} | Test: {len(test)} rows")
+n_folds, first = 4, 0.5
+edges = np.linspace(int(len(all_dates) * first), len(all_dates), n_folds + 1).astype(int)
+fold_preds = []
+for i in range(n_folds):
+    a_idx, b_idx = edges[i], edges[i + 1]
+    train_end = all_dates[max(a_idx - HORIZON, 0)]          # embargo = forecast horizon
+    tr_f = model_df[model_df.Date < train_end]
+    te_f = model_df[(model_df.Date >= all_dates[a_idx]) & (model_df.Date <= all_dates[b_idx - 1])].copy()
+    sc = StandardScaler().fit(tr_f[features])
+    ridge_f = Ridge(alpha=10.0).fit(sc.transform(tr_f[features]), tr_f.Log_Target)
+    rf_f = RandomForestRegressor(n_estimators=200, max_depth=8, min_samples_leaf=30,
+                                 max_features=.5, n_jobs=-1, random_state=SEED).fit(tr_f[features], tr_f.Log_Target)
+    gb_f = HistGradientBoostingRegressor(max_depth=3, learning_rate=.05, max_iter=200, min_samples_leaf=60,
+                                         l2_regularization=5.0, random_state=SEED).fit(tr_f[features], tr_f.Log_Target)
+    # log-target models: bias-correct exp() with the training residual variance
+    resid_var = {}
+    for nm, mdl, X in (("Ridge", ridge_f, sc.transform(tr_f[features])), ("RF", rf_f, tr_f[features]),
+                       ("GB", gb_f, tr_f[features])):
+        resid_var[nm] = np.var(tr_f.Log_Target - mdl.predict(X))
+    te_f["P_Baseline"] = te_f.Volatility_20D
+    te_f["P_EWMA"] = te_f.EWMA_Vol
+    te_f["P_Ridge"] = np.exp(ridge_f.predict(sc.transform(te_f[features])) + resid_var["Ridge"] / 2)
+    te_f["P_RandomForest"] = np.exp(rf_f.predict(te_f[features]) + resid_var["RF"] / 2)
+    te_f["P_GradBoost"] = np.exp(gb_f.predict(te_f[features]) + resid_var["GB"] / 2)
+    te_f["P_Ensemble"] = te_f[["P_Ridge", "P_RandomForest", "P_GradBoost"]].mean(axis=1)
+    te_f["fold"] = i + 1
+    fold_preds.append(te_f)
+    if i == n_folds - 1:
+        last_rf, last_gb, last_ridge = rf_f, gb_f, ridge_f
+vol_oos = pd.concat(fold_preds)
+pred_cols = ["P_Baseline", "P_EWMA", "P_Ridge", "P_RandomForest", "P_GradBoost", "P_Ensemble"]
+print(f"Walk-forward test: {vol_oos.Date.min().date()} to {vol_oos.Date.max().date()} | "
+      f"{len(vol_oos)} rows | {n_folds} folds | embargo {HORIZON} days")
 
-scaler = StandardScaler().fit(train[features])
-ridge = Ridge(alpha=1.0).fit(scaler.transform(train[features]), train.Target)
-forest_model = RandomForestRegressor(n_estimators=200, max_depth=6, min_samples_leaf=20,
-                                     n_jobs=-1, random_state=42).fit(train[features], train.Target)
-
-predictions = {
-    "Baseline: current 20D vol": test.Volatility_20D.values,
-    "Ridge": ridge.predict(scaler.transform(test[features])),
-    "Random Forest": forest_model.predict(test[features]),
-}
 score_rows = {}
-for name, pred in predictions.items():
-    score_rows[name] = {
-        "MAE": mean_absolute_error(test.Target, pred),
-        "RMSE": np.sqrt(np.mean((test.Target - pred) ** 2)),
-        "R2": r2_score(test.Target, pred),
+for col in pred_cols:
+    pred = vol_oos[col]
+    score_rows[col[2:]] = {
+        "MAE": mean_absolute_error(vol_oos.Target, pred),
+        "RMSE": np.sqrt(np.mean((vol_oos.Target - pred) ** 2)),
+        "R2": r2_score(vol_oos.Target, pred),
+        "QLIKE": qlike(vol_oos.Target, pred),
+        "Corr": np.corrcoef(vol_oos.Target, pred)[0, 1],
     }
 scores = pd.DataFrame(score_rows).T
 print(scores.round(4).to_string())
+fold_r2 = pd.DataFrame({col[2:]: [r2_score(x.Target, x[col]) for _, x in vol_oos.groupby("fold")]
+                        for col in pred_cols}, index=[f"fold{i}" for i in range(1, n_folds + 1)])
+print("\nR2 by fold (stability):\n", fold_r2.round(4).to_string())
+best_vol_model = scores["QLIKE"].idxmin()
+imp_gain = scores.loc["Baseline", "MAE"] - scores.loc[best_vol_model, "MAE"]
+print(f"\nBest by QLIKE: {best_vol_model} | MAE improvement vs current 20D vol: "
+      f"{imp_gain / scores.loc['Baseline', 'MAE'] * 100:.1f}%")
 
-importance = pd.Series(forest_model.feature_importances_, index=features).sort_values()
+from sklearn.inspection import permutation_importance
+last_te = vol_oos[vol_oos.fold == n_folds]
+perm = permutation_importance(last_rf, last_te[features].sample(min(3000, len(last_te)), random_state=SEED),
+                              np.log(last_te.Target.clip(lower=1e-6)).loc[
+                                  last_te[features].sample(min(3000, len(last_te)), random_state=SEED).index],
+                              n_repeats=5, random_state=SEED, n_jobs=-1)
+importance = pd.Series(perm.importances_mean, index=features).sort_values()
+
+predictions = {"Random Forest": vol_oos["P_RandomForest"].values}
+test = vol_oos
+ridge = last_ridge
 fig, axes = plt.subplots(1, 3, figsize=(20, 5.5))
 axes[0].scatter(test.Target, predictions["Random Forest"], s=4, alpha=.3, color="teal")
 limits = [test.Target.min(), test.Target.max()]
 axes[0].plot(limits, limits, "r--")
 axes[0].set_xlabel("Actual next-10D volatility")
 axes[0].set_ylabel("Predicted")
-axes[0].set_title("Random Forest: Actual vs Predicted")
-importance.plot.barh(ax=axes[1], color="darkorange", title="Random Forest Feature Importance")
-pd.Series(ridge.coef_, index=features).sort_values().plot.barh(
-    ax=axes[2], color="slateblue", title="Ridge Standardised Coefficients")
+axes[0].set_title("Random Forest (walk-forward): Actual vs Predicted")
+importance.plot.barh(ax=axes[1], color="darkorange", title="Permutation Importance (last fold, held-out)")
+scores["QLIKE"].sort_values().plot.barh(ax=axes[2], color="slateblue", title="QLIKE Loss (lower = better)")
 save_fig(fig, "fig_15_forecasting.png")
 
 
@@ -769,11 +939,16 @@ rsi_raw = np.where(rsi < 30, 1.0, np.where(rsi > 70, 0.0, np.nan))
 rsi_position = pd.DataFrame(rsi_raw, index=rsi.index, columns=rsi.columns)
 rsi_position = rsi_position.ffill().fillna(0).shift(1)
 
+def net_of_costs(gross, position):
+    trades = position.fillna(0).diff().abs().fillna(0)
+    return gross - trades * COST_BPS / 100          # returns are in %, cost in bps
+
 strategies = {
     "Buy & Hold": returns,
-    "MA20/50 Trend": returns * ma_position,
-    "RSI 30/70": returns * rsi_position,
+    "MA20/50 Trend": net_of_costs(returns * ma_position, ma_position),
+    "RSI 30/70": net_of_costs(returns * rsi_position, rsi_position),
 }
+print(f"Strategy returns are NET of {COST_BPS} bps one-way costs.")
 sharpe_table = pd.DataFrame({name: rets.apply(performance).T["Sharpe"] for name, rets in strategies.items()})
 return_table = pd.DataFrame({name: rets.apply(performance).T["Ann_Ret_%"] for name, rets in strategies.items()})
 dd_table = pd.DataFrame({name: rets.apply(performance).T["MaxDD_%"] for name, rets in strategies.items()})
@@ -826,20 +1001,37 @@ var_backtest = pd.DataFrame({
 var_backtest["Breach_%"] = var_backtest.Breaches / var_backtest.Test_Days * 100
 var_backtest["Kupiec_LR"] = [kupiec(row.Breaches, row.Test_Days)[0] for row in var_backtest.itertuples()]
 var_backtest["Kupiec_p"] = [kupiec(row.Breaches, row.Test_Days)[1] for row in var_backtest.itertuples()]
+var_backtest["Christoffersen_p"] = [
+    christoffersen((returns[sym] < rolling_var[sym])[rolling_var[sym].notna()].astype(int).values)[1]
+    for sym in symbols]
+lam = 0.94
+ewma_sigma = np.sqrt((returns ** 2).ewm(alpha=1 - lam, adjust=False).mean()).shift(1)
+z05 = stats.norm.ppf(.05)
+ewma_var = ewma_sigma * z05
+valid = ewma_var.notna() & (np.arange(len(returns))[:, None] > 250)
+var_backtest["EWMA_Breach_%"] = [((returns[sym] < ewma_var[sym])[valid[sym]]).mean() * 100 for sym in symbols]
 print("\n95% Historical VaR backtest (250D window, expected breach rate 5%):\n", var_backtest.round(4).to_string())
+print("Kupiec_p < 0.05 => wrong breach frequency; Christoffersen_p < 0.05 => breaches are clustered.")
+print("EWMA_Breach_% is the RiskMetrics (lambda=0.94) normal VaR breach rate for comparison.")
 
 split_at = int(len(returns) * .7)
 ret_train = returns.iloc[:split_at]
 ret_test = returns.iloc[split_at:]
 mu_train = ret_train.mean().values * TRADING_DAYS
 cov_train = ret_train.cov().values * TRADING_DAYS
+cov_train = LedoitWolf().fit(ret_train.fillna(0).values).covariance_ * TRADING_DAYS
 train_opt = optimize.minimize(lambda w: -(w @ mu_train) / np.sqrt(w @ cov_train @ w), equal_w,
                               bounds=bounds, constraints=constraints, method="SLSQP")
+train_minvar = optimize.minimize(lambda w: np.sqrt(w @ cov_train @ w), equal_w,
+                                 bounds=bounds, constraints=constraints, method="SLSQP")
+train_rp = risk_parity_weights(cov_train)
 
 test_filled = ret_test.fillna(0).values
 oos = pd.DataFrame({
     "Equal_Weight": test_filled @ equal_w,
     "Max_Sharpe (train weights)": test_filled @ train_opt.x,
+    "Min_Var (train weights)": test_filled @ train_minvar.x,
+    "Risk_Parity (train weights)": test_filled @ train_rp,
 }, index=ret_test.index)
 print("\nTrain weights (%):\n", pd.Series(train_opt.x * 100, index=symbols).round(2).to_string())
 oos_metrics = oos.apply(performance).T
@@ -882,14 +1074,21 @@ print(f"7. Mean pairwise stock correlation = {upper.mean():.4f}; Volume vs |Retu
 print(f"8. ARCH effects significant (5%) in {n_arch} of {n} stocks; "
       f"|return| autocorrelation lag 1 = {market.abs().autocorr(1):.4f}.")
 print(f"9. Risk clusters (k={best_k}): " + cluster_summary)
-print(f"10. Max-Sharpe portfolio Sharpe = {port_metrics.loc['Max_Sharpe', 'Sharpe']:.3f} "
+print(f"10. In-sample Max-Sharpe portfolio Sharpe = {port_metrics.loc['Max_Sharpe', 'Sharpe']:.3f} (optimistic) "
       f"vs equal weight {port_metrics.loc['Equal_Weight', 'Sharpe']:.3f}.")
-print(f"11. Volatility forecast R2: baseline {scores.iloc[0]['R2']:.3f}, "
-      f"ridge {scores.iloc[1]['R2']:.3f}, random forest {scores.iloc[2]['R2']:.3f}.")
+print(f"11. Walk-forward volatility forecast R2: baseline {scores.loc['Baseline', 'R2']:.3f}, "
+      f"ridge {scores.loc['Ridge', 'R2']:.3f}, random forest {scores.loc['RandomForest', 'R2']:.3f}, "
+      f"gradient boosting {scores.loc['GradBoost', 'R2']:.3f}, ensemble {scores.loc['Ensemble', 'R2']:.3f}; "
+      f"best by QLIKE: {best_vol_model}.")
+if len(garch_table):
+    print(f"11b. GARCH persistence averages {garch_table['Persist'].astype(float).mean():.3f} "
+          f"(half-life {garch_table['HalfLife_d'].astype(float).median():.1f} days); "
+          f"leverage (GJR) preferred in {int((garch_table['Best'] == 'GJR').sum())} of {len(garch_table)} stocks.")
 print(f"12. Volume-spike days show mean |return| {abs_high.mean():.3f}% vs {abs_low.mean():.3f}% on other days.")
 print(f"13. Average Sharpe: buy & hold {sharpe_table['Buy & Hold'].mean():.3f}, "
       f"MA trend {sharpe_table['MA20/50 Trend'].mean():.3f}, RSI {sharpe_table['RSI 30/70'].mean():.3f}.")
 print(f"14. Stocks whose bootstrap Sharpe CI excludes zero: {n_ci_excludes_zero} of {n}.")
-print(f"15. Out-of-sample Sharpe: equal weight {oos_metrics.loc['Equal_Weight', 'Sharpe']:.3f} "
-      f"vs max-Sharpe weights {oos_metrics.loc['Max_Sharpe (train weights)', 'Sharpe']:.3f}.")
+print("15. Out-of-sample Sharpe: " + ", ".join(f"{k} {v:.3f}" for k, v in oos_metrics["Sharpe"].items()) + ".")
+print(f"16. Mean-return t-tests significant before / after FDR correction: "
+      f"{int(ttests['Mean_ret_sig_at_5%'].sum())} / {int(ttests['Sig_after_FDR'].sum())} of {n}.")
 print("\nAll figures saved as fig_*.png in the working directory.")
